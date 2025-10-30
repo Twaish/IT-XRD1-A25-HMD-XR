@@ -250,6 +250,19 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.xr.arcore": {
+      "version": "6.2.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.core-utils": "2.2.2",
+        "com.unity.xr.management": "4.4.0",
+        "com.unity.xr.arfoundation": "6.2.0",
+        "com.unity.modules.androidjni": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.arfoundation": {
       "version": "6.2.0",
       "depth": 0,
@@ -335,6 +348,15 @@
       "source": "registry",
       "dependencies": {
         "com.unity.xr.management": "4.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.oculus": {
+      "version": "4.5.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "4.4.0"
       },
       "url": "https://packages.unity.com"
     },
