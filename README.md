@@ -13,3 +13,7 @@ Qraktor - 331850 Thomas E. Kastberg
 ### Scripts/Libraries
 - [EzySlice by DavidArayan](https://github.com/DavidArayan/ezy-slice)
 - [Mesh slicing mechanic](https://www.youtube.com/watch?v=GQzW6ZJFQ94)
+
+
+## Todos
+- Make sword spin when certain distance away from player
