@@ -10,7 +10,7 @@ public class BladeSlicer : MonoBehaviour
   [SerializeField] private Transform startSlicePoint;
   [SerializeField] private Transform endSlicePoint;
   [SerializeField] private VelocityEstimator velocityEstimator;
-  [SerializeField] private float cutForce = 2000;
+  [SerializeField] private float cutForce = 10;
 
   public event Action<GameObject, Vector3> OnSlice;
 
@@ -26,6 +26,12 @@ public class BladeSlicer : MonoBehaviour
 
   protected virtual void Slice(GameObject target)
   {
+    SliceDepth depth = target.GetComponent<SliceDepth>();
+    if (depth != null && !depth.CanBeSliced)
+    {
+      return;
+    }
+
     Vector3 velocity = velocityEstimator.GetVelocityEstimate();
     Vector3 planeNormal = Vector3.Cross(endSlicePoint.position - startSlicePoint.position, velocity);
     SlicedHull hull = target.Slice(endSlicePoint.position, planeNormal.normalized);
@@ -33,20 +39,23 @@ public class BladeSlicer : MonoBehaviour
     if (hull != null)
     {
       GameObject upperHull = hull.CreateUpperHull(target, crossSectionMaterial);
-      SetupSlicedComponent(upperHull);
+      SetupSlicedComponent(upperHull, depth);
       GameObject lowerHull = hull.CreateLowerHull(target, crossSectionMaterial);
-      SetupSlicedComponent(lowerHull);
+      SetupSlicedComponent(lowerHull, depth);
       Destroy(target);
     }
 
     Debug.Log($"{name} sliced {target.name}!");
   }
 
-  public void SetupSlicedComponent(GameObject hull)
+  public void SetupSlicedComponent(GameObject hull, SliceDepth parentDepth)
   {
     Rigidbody rigidbody = hull.AddComponent<Rigidbody>();
     MeshCollider collider = hull.AddComponent<MeshCollider>();
     collider.convex = true;
     rigidbody.AddExplosionForce(cutForce, hull.transform.position, 1);
+    
+    SliceDepth.AssignTo(hull, parentDepth);
+    hull.layer = Mathf.RoundToInt(Mathf.Log(sliceableLayer.value, 2));
   }
 }
