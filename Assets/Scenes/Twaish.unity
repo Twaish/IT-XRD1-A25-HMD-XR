@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -505,24 +505,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!1 &465107850 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-  m_PrefabInstance: {fileID: 1480984767929412847}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &465107854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465107850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0493d255ea97a114ba06896cb7313fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  rightHandTransform: {fileID: 1678674904}
 --- !u!1 &542876761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,11 +1334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliceDepth
   maxDepth: 3
   currentDepth: 0
---- !u!4 &1678674904 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 441087506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2079174758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1596,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3150284259679879599, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150284259679879599, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_AttachEaseInTime
       value: 0
       objectReference: {fileID: 0}
@@ -1677,10 +1658,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 465107854}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1692,9 +1670,9 @@ SceneRoots:
   - {fileID: 2092139010}
   - {fileID: 1249617921}
   - {fileID: 1480984767929412847}
+  - {fileID: 1376209156}
   - {fileID: 56662770}
   - {fileID: 1514968388}
   - {fileID: 542876766}
   - {fileID: 2079174763}
-  - {fileID: 1376209156}
   - {fileID: 1412177558}
