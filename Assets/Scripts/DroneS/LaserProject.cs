@@ -6,6 +6,7 @@ public class LaserProjectile : MonoBehaviour
     public float lifetime = 5f;
     public bool isDeflected = false;
     private Rigidbody rb;
+    public GameObject originDrone;
 
     void Start()
     {
@@ -30,12 +31,19 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Drone") && isDeflected)
+        {
+            Debug.Log("Killed drone with deflected laser");
+            Destroy(originDrone);
+            Destroy(gameObject);
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by laser!");
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Enemy") && !other.CompareTag("Saber"))
+        else if (!other.CompareTag("Drone") && !other.CompareTag("Saber"))
         {
             Destroy(gameObject);
         }
