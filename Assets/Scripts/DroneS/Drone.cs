@@ -84,7 +84,9 @@ public class Drone : MonoBehaviour
     void FireLaser()
     {
         if (!laserPrefab || !firePoint) return;
-        Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+        GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+        LaserProjectile laserScript = laser.GetComponent<LaserProjectile>();
+        laserScript.originDrone = gameObject;
     }
 
     Vector3 ComputeSeparationForce()
@@ -119,18 +121,5 @@ public class Drone : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, separationDistance);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        LaserProjectile laser = other.GetComponent<LaserProjectile>();
-        if (laser == null)
-            return;
-
-        if (laser.isDeflected)
-        {
-            Destroy(gameObject);
-            return;
-        }
     }
 }

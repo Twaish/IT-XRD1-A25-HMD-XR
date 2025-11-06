@@ -24,16 +24,16 @@ public class BladeDeflect : MonoBehaviour
 
         int layer = gameObject.layer;
 
-        if (layer == LayerMask.NameToLayer("DeflectBig"))
+        if (layer == LayerMask.NameToLayer("DeflectSmall"))
         {
-            GameObject enemy = GameObject.FindWithTag("Drone");
+            GameObject enemy = laser.originDrone;
             if (enemy != null)
                 deflectDir = (enemy.transform.position - transform.position).normalized;
             else
                 deflectDir = transform.forward;
             laser.isDeflected = true;
         }
-        else if (layer == LayerMask.NameToLayer("DeflectSmall"))
+        else if (layer == LayerMask.NameToLayer("DeflectBig"))
         {
             Vector3 awayFromPlayer = (other.transform.position - player.position).normalized;
             deflectDir = Quaternion.Euler(
@@ -45,7 +45,6 @@ public class BladeDeflect : MonoBehaviour
         }
 
         rb.linearVelocity = deflectDir * deflectForce;
-        laser.enabled = false; 
         laser.transform.forward = deflectDir;
     }
 }
