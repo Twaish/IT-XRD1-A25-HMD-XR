@@ -826,6 +826,8 @@ GameObject:
   - component: {fileID: 1215466896931637641}
   - component: {fileID: 4909409352179197895}
   - component: {fileID: 6145713404454594031}
+  - component: {fileID: 6755272784880351004}
+  - component: {fileID: 3538593521665000249}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -952,6 +954,37 @@ MonoBehaviour:
   endSlicePoint: {fileID: 2964262177773073899}
   velocityEstimator: {fileID: 3718529590247007355}
   cutForce: 1
+--- !u!114 &6755272784880351004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139469200289765530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2f7a39382c8d643adead328274e53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  soundList:
+  - name: slice
+    clip: {fileID: 8300000, guid: 693b1e01dfc772a41be2b21c10cfe2c6, type: 3}
+    defaultVolume: 0.5
+    isSpatial: 1
+    delay: 0
+  initialPoolSize: 1
+--- !u!114 &3538593521665000249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139469200289765530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7e0632d9655044a9ff3013a304ffa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SliceSfxPlayer
 --- !u!1 &3520311591968337169
 GameObject:
   m_ObjectHideFlags: 0
