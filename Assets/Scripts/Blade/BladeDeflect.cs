@@ -28,6 +28,8 @@ public class BladeDeflect : MonoBehaviour
         if (!other.TryGetComponent<Rigidbody>(out var rb))
             return;
 
+        if (laser.isDeflected) return;
+
         Vector3 deflectDir = Vector3.zero;
         laser.isDeflected = true;
 
