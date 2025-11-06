@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class LaserProjectile : MonoBehaviour
 {
     public float speed = 25f;
@@ -19,14 +20,7 @@ public class LaserProjectile : MonoBehaviour
     void Update()
     {
         if (!isDeflected)
-            transform.position += transform.forward * speed * Time.deltaTime;
-    }
-
-    public void Deflect(Vector3 newDirection, float newSpeed)
-    {
-        isDeflected = true;
-        rb.linearVelocity = newDirection * newSpeed;
-        transform.forward = newDirection;
+            transform.position += speed * Time.deltaTime * transform.forward;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,17 +28,18 @@ public class LaserProjectile : MonoBehaviour
         if (other.CompareTag("Drone") && isDeflected)
         {
             Debug.Log("Killed drone with deflected laser");
-            Destroy(originDrone);
+            Drone drone = originDrone.GetComponent<Drone>();
+            drone.Die();
             Destroy(gameObject);
-            return;
         }
-        if (other.CompareTag("Player"))
+        else if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit by laser!");
             Destroy(gameObject);
         }
         else if (!other.CompareTag("Drone") && !other.CompareTag("Saber"))
         {
+            Debug.Log(other.gameObject);
             Destroy(gameObject);
         }
     }
