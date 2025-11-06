@@ -14,7 +14,7 @@ public class Drone : MonoBehaviour
     [Header("Separation / Avoidance")]
     public float separationDistance = 3f;
     public float separationStrength = 2f;
-    public LayerMask droneMask;
+    public string droneTag = "Drone";
 
     [Header("Shooting")]
     public GameObject laserPrefab;
@@ -46,7 +46,6 @@ public class Drone : MonoBehaviour
         orbitTarget = player.position + offset;
 
         fireTimer = fireRate;
-        gameObject.layer = LayerMask.NameToLayer("Drone");
     }
 
     void Update()
@@ -91,11 +90,15 @@ public class Drone : MonoBehaviour
     Vector3 ComputeSeparationForce()
     {
         Vector3 force = Vector3.zero;
-        Collider[] neighbors = Physics.OverlapSphere(transform.position, separationDistance, droneMask);
+
+        Collider[] neighbors = Physics.OverlapSphere(transform.position, separationDistance);
 
         foreach (var neighbor in neighbors)
         {
             if (neighbor.gameObject == gameObject) continue;
+
+            if (!neighbor.CompareTag(droneTag)) continue;
+
             Vector3 away = transform.position - neighbor.transform.position;
             float distance = away.magnitude;
             if (distance > 0f)
@@ -116,5 +119,18 @@ public class Drone : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, separationDistance);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        LaserProjectile laser = other.GetComponent<LaserProjectile>();
+        if (laser == null)
+            return;
+
+        if (laser.isDeflected)
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 }
