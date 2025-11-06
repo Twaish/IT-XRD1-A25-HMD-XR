@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System;
+using Random = UnityEngine.Random;
 
 public class Drone : MonoBehaviour
 {
@@ -36,6 +38,8 @@ public class Drone : MonoBehaviour
     public float aimDuration = 1.5f;
     public float laserOvershoot = 5f;
     private LineRenderer currentSight;
+
+    public event Action OnDeath;
 
     void Start()
     {
@@ -189,5 +193,11 @@ public class Drone : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, separationDistance);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+        OnDeath?.Invoke();
     }
 }
