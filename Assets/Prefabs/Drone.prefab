@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3429679332443764037}
   - component: {fileID: 4219631752520865151}
   - component: {fileID: 97974133345712775}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Drone
   m_TagString: Drone
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -168,10 +168,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &97974133345712775
 MonoBehaviour:
   m_ObjectHideFlags: 0
