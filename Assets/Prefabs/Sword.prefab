@@ -789,6 +789,7 @@ MonoBehaviour:
   player: {fileID: 0}
   deflectForce: 30
   bigBoxRandomAngle: 20
+  deflectScheme: 1
 --- !u!136 &7835077448659379810
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -823,7 +824,6 @@ GameObject:
   - component: {fileID: 4385149175708207400}
   - component: {fileID: 4543214917327465302}
   - component: {fileID: 1215466896931637641}
-  - component: {fileID: 3018011543145769587}
   - component: {fileID: 4909409352179197895}
   - component: {fileID: 6145713404454594031}
   m_Layer: 0
@@ -905,27 +905,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3018011543145769587
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139469200289765530}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4909409352179197895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1845,6 +1824,7 @@ MonoBehaviour:
   player: {fileID: 0}
   deflectForce: 30
   bigBoxRandomAngle: 20
+  deflectScheme: 0
 --- !u!136 &150677820667670047
 CapsuleCollider:
   m_ObjectHideFlags: 0
