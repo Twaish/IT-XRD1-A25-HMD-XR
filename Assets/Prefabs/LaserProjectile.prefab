@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserProjectile
   speed: 25
   lifetime: 5
+  isDeflected: 0
+  originDrone: {fileID: 0}
 --- !u!96 &2980143680848972093
 TrailRenderer:
   serializedVersion: 3

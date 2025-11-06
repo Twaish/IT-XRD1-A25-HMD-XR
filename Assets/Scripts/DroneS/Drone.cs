@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Drone : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class Drone : MonoBehaviour
     private float hoverOffset;
     private Vector3 orbitTarget;
     private Vector3 previousAvoidance;
+
+    [Header("Targeting / Laser Sight")]
+    public GameObject laserSightPrefab;
+    public float aimDuration = 1.5f;
+    public float laserOvershoot = 5f;
+    private LineRenderer currentSight;
 
     void Start()
     {
@@ -76,9 +83,70 @@ public class Drone : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.position) < detectionRange && fireTimer <= 0f)
         {
-            FireLaser();
-            fireTimer = fireRate;
+            StartCoroutine(AimAndFire());
+            fireTimer = fireRate + aimDuration;
         }
+    }
+    private IEnumerator AimAndFire()
+    {
+        if (laserSightPrefab && !currentSight)
+        {
+            GameObject sightObj = Instantiate(laserSightPrefab, firePoint.position, Quaternion.identity);
+            currentSight = sightObj.GetComponent<LineRenderer>();
+        }
+
+        float timer = 0f;
+
+        while (timer < aimDuration)
+        {
+            timer += Time.deltaTime;
+
+            if (currentSight)
+            {
+                currentSight.SetPosition(0, firePoint.position);
+
+                Vector3 dir = (player.position - firePoint.position).normalized;
+
+                // Start ray from fire point and extend beyond the player
+                float beamLength = detectionRange; // total max beam length
+                float extraDistance = 5f;          // goes this much *past* the player
+
+                // Check if something is behind player to hit instead
+                RaycastHit hit;
+                Vector3 beamEnd;
+
+                // Extend ray slightly beyond player
+                Vector3 extendedTarget = player.position + dir * extraDistance;
+
+                if (Physics.Raycast(firePoint.position, dir, out hit, beamLength))
+                {
+                    beamEnd = hit.point;
+                }
+                else
+                {
+                    beamEnd = firePoint.position + dir * beamLength;
+                }
+
+                // If the player was hit first, override to ensure it continues past
+                float distToPlayer = Vector3.Distance(firePoint.position, player.position);
+                if (distToPlayer + extraDistance < beamLength)
+                {
+                    beamEnd = firePoint.position + dir * (distToPlayer + extraDistance);
+                }
+
+                currentSight.SetPosition(1, beamEnd);
+            }
+
+            yield return null;
+        }
+
+        if (currentSight)
+        {
+            Destroy(currentSight.gameObject);
+            currentSight = null;
+        }
+
+        FireLaser();
     }
 
     void FireLaser()
