@@ -42,10 +42,10 @@ public class BladeSlicer : MonoBehaviour
       SetupSlicedComponent(upperHull, depth);
       GameObject lowerHull = hull.CreateLowerHull(target, crossSectionMaterial);
       SetupSlicedComponent(lowerHull, depth);
+      Debug.Log($"{name} sliced {target.name}!");
       Destroy(target);
     }
 
-    Debug.Log($"{name} sliced {target.name}!");
   }
 
   public void SetupSlicedComponent(GameObject hull, SliceDepth parentDepth)
