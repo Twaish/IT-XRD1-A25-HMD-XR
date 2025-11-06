@@ -8,6 +8,7 @@ TagManager:
   - Sliceable
   - Laser
   - Saber
+  - Drone
   layers:
   - Default
   - TransparentFX

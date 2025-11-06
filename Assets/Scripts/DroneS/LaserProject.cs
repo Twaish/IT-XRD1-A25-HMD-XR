@@ -4,7 +4,7 @@ public class LaserProjectile : MonoBehaviour
 {
     public float speed = 25f;
     public float lifetime = 5f;
-    private bool isDeflected = false;
+    public bool isDeflected = false;
     private Rigidbody rb;
 
     void Start()

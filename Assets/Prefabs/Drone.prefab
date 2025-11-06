@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 97974133345712775}
   m_Layer: 6
   m_Name: Drone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +139,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -193,9 +193,7 @@ MonoBehaviour:
   maxHeight: 5
   separationDistance: 3
   separationStrength: 2
-  droneMask:
-    serializedVersion: 2
-    m_Bits: 8
+  droneTag: Drone
   laserPrefab: {fileID: 6601173930321713268, guid: b37f410c8724c47fb9cbf0505e6f40ea, type: 3}
   firePoint: {fileID: 8535419197212348802}
   fireRate: 2

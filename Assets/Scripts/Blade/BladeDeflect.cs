@@ -23,31 +23,29 @@ public class BladeDeflect : MonoBehaviour
         Vector3 deflectDir = Vector3.zero;
 
         int layer = gameObject.layer;
-        int smallLayer = LayerMask.NameToLayer("DeflectSmall");
-        int bigLayer = LayerMask.NameToLayer("DeflectBig");
 
-        if (layer == LayerMask.NameToLayer("DeflectSmall"))
+        if (layer == LayerMask.NameToLayer("DeflectBig"))
         {
-            // Perfect deflection directly back to enemy
-            GameObject enemy = GameObject.FindWithTag("Enemy");
+            GameObject enemy = GameObject.FindWithTag("Drone");
             if (enemy != null)
                 deflectDir = (enemy.transform.position - transform.position).normalized;
             else
                 deflectDir = transform.forward;
+            laser.isDeflected = true;
         }
-        else if (layer == LayerMask.NameToLayer("DeflectBig"))
+        else if (layer == LayerMask.NameToLayer("DeflectSmall"))
         {
-            // Imperfect deflection, slightly randomized
             Vector3 awayFromPlayer = (other.transform.position - player.position).normalized;
             deflectDir = Quaternion.Euler(
                 Random.Range(-bigBoxRandomAngle, bigBoxRandomAngle),
                 Random.Range(-bigBoxRandomAngle, bigBoxRandomAngle),
                 0f
             ) * awayFromPlayer;
+            laser.isDeflected = true;
         }
 
         rb.linearVelocity = deflectDir * deflectForce;
-        laser.enabled = false; // stop forward motion code
+        laser.enabled = false; 
         laser.transform.forward = deflectDir;
     }
 }
