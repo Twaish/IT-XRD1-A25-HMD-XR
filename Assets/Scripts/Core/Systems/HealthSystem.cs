@@ -26,4 +26,15 @@ public class HealthSystem : MonoBehaviour
     }
 
     public int MaxHealth => maxHealth;
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    private void OnValidate()
+    {
+        health = Mathf.Clamp(health, minHealth, maxHealth);
+        if (Application.isPlaying)
+        {
+            OnHealthChanged?.Invoke(health);
+        }
+    }
+#endif
 }
