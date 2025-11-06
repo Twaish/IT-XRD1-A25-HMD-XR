@@ -1615,7 +1615,6 @@ GameObject:
   - component: {fileID: 7209245726273454000}
   - component: {fileID: 607166910909723563}
   - component: {fileID: 3150284259679879599}
-  - component: {fileID: 7310929952507101457}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Saber
@@ -1798,21 +1797,6 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!114 &7310929952507101457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4805321980195045753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14aa31fc4cc3d459f8ae1998773beba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BladeDeflect
-  player: {fileID: 0}
-  deflectForce: 30
-  bigBoxRandomAngle: 20
 --- !u!1 &5077838892200239179
 GameObject:
   m_ObjectHideFlags: 0
