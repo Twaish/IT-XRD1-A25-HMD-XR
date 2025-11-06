@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BladeDeflect : MonoBehaviour
 {
@@ -7,17 +9,14 @@ public class BladeDeflect : MonoBehaviour
     public float deflectForce = 30f;
     public float bigBoxRandomAngle = 20f;
 
+    public event Action OnDeflect;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Laser"))
+        if (!other.TryGetComponent<LaserProjectile>(out var laser))
             return;
 
-        LaserProjectile laser = other.GetComponent<LaserProjectile>();
-        if (laser == null)
-            return;
-
-        Rigidbody rb = other.GetComponent<Rigidbody>();
-        if (rb == null)
+        if (!other.TryGetComponent<Rigidbody>(out var rb))
             return;
 
         Vector3 deflectDir = Vector3.zero;
@@ -46,5 +45,6 @@ public class BladeDeflect : MonoBehaviour
 
         rb.linearVelocity = deflectDir * deflectForce;
         laser.transform.forward = deflectDir;
+        OnDeflect?.Invoke();
     }
 }
