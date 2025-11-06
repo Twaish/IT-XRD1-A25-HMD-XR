@@ -7,10 +7,9 @@ public class HealthSystem : MonoBehaviour
     private int health = 100;
 
     [SerializeField]
-    private int maxHealth = 100;
-
-    [SerializeField]
     private int minHealth = 0;
+    [SerializeField]
+    private int maxHealth = 100;
 
     public event Action<int> OnHealthChanged;
 
@@ -21,8 +20,5 @@ public class HealthSystem : MonoBehaviour
         OnHealthChanged?.Invoke(health);
     }
 
-    public int GetHealth()
-    {
-        return health;
-    }   
+    public int Health => health;
 }
