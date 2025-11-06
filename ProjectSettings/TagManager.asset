@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Anchor
   - Sliceable
+  - Laser
+  - Saber
   layers:
   - Default
   - TransparentFX
@@ -14,9 +16,9 @@ TagManager:
   - Water
   - UI
   - Sliceable
-  - 
-  - 
-  - 
+  - DeflectSmall
+  - DeflectBig
+  - Laser
   - 
   - 
   - 
