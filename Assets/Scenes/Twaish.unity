@@ -1068,6 +1068,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SliceDepth
   maxDepth: 3
   currentDepth: 0
+--- !u!1 &668784935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 1254048640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &668784940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668784935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b961456bb838044a2016c0b7b064a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeflectSfxPlayer
+  smallDeflectZone: {fileID: 1959777468}
+  bigDeflectZone: {fileID: 1307033026}
+--- !u!114 &668784941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668784935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2f7a39382c8d643adead328274e53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  soundList:
+  - name: deflect
+    clip: {fileID: 8300000, guid: 46c2208bae5652f4296ecc56fa4a45c7, type: 3}
+    defaultVolume: 0.1
+    isSpatial: 0
+    delay: 0
+  initialPoolSize: 5
 --- !u!1 &674680228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1702,13 @@ PrefabInstance:
     - {fileID: 7310929952507101457, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 668784941}
+    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 668784940}
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
 --- !u!1 &1261198823
 GameObject:
@@ -1703,6 +1747,17 @@ RectTransform:
   m_AnchoredPosition: {x: 75, y: -30}
   m_SizeDelta: {x: 150, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1307033026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5547856334176430565, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 1254048640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aa31fc4cc3d459f8ae1998773beba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BladeDeflect
 --- !u!1 &1308789797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,6 +2886,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1959777468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7543589654942666759, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 1254048640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14aa31fc4cc3d459f8ae1998773beba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BladeDeflect
 --- !u!1 &1966115596
 GameObject:
   m_ObjectHideFlags: 0
