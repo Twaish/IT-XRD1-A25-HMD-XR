@@ -24,6 +24,7 @@ Qraktor - 331850 Thomas E. Kastberg
 - [Laser Gun - Fast Blast by Bop Audio](https://uppbeat.io/sfx/laser-gun-fast-blast/13922/34940)
 - [Futuristic Gun - Pulse Blaster by Slava Pogorelsky](https://uppbeat.io/sfx/futuristic-gun-pulse-blaster/4931/19131)
 - [Sci-fi Whoosh - Laser Sword](https://uppbeat.io/sfx/sci-fi-whoosh-laser-sword/163021/43919)
+- [Large Explosion by Sound Ideas](https://soundeffects.fandom.com/wiki/Sound_Ideas,_EXPLOSION_-_LARGE_EXPLOSION_13)
 
 ## Todos
 - Make sword spin when certain distance away from player
