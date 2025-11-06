@@ -1594,6 +1594,8 @@ GameObject:
   - component: {fileID: 7209245726273454000}
   - component: {fileID: 607166910909723563}
   - component: {fileID: 3150284259679879599}
+  - component: {fileID: 6322428077488620516}
+  - component: {fileID: 6729959331608251806}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Saber
@@ -1776,6 +1778,39 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &6322428077488620516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805321980195045753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2f7a39382c8d643adead328274e53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  soundList:
+  - name: deflect
+    clip: {fileID: 8300000, guid: 46c2208bae5652f4296ecc56fa4a45c7, type: 3}
+    defaultVolume: 0.5
+    isSpatial: 1
+    delay: 0
+  initialPoolSize: 5
+--- !u!114 &6729959331608251806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805321980195045753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b961456bb838044a2016c0b7b064a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeflectSfxPlayer
+  smallDeflectZone: {fileID: 7543589654942666759}
+  bigDeflectZone: {fileID: 5547856334176430565}
 --- !u!1 &5077838892200239179
 GameObject:
   m_ObjectHideFlags: 0
