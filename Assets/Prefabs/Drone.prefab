@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3429679332443764037}
   - component: {fileID: 4219631752520865151}
   - component: {fileID: 97974133345712775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,6 +189,8 @@ MonoBehaviour:
   moveSmooth: 2
   hoverAmplitude: 0.5
   hoverSpeed: 2
+  minHeight: 1.5
+  maxHeight: 5
   separationDistance: 3
   separationStrength: 2
   droneMask:
