@@ -190,7 +190,7 @@ MonoBehaviour:
   hoverAmplitude: 0.5
   hoverSpeed: 2
   minHeight: 1.5
-  maxHeight: 5
+  maxHeight: 8
   separationDistance: 3
   separationStrength: 2
   droneTag: Drone
@@ -199,3 +199,6 @@ MonoBehaviour:
   fireRate: 2
   detectionRange: 30
   player: {fileID: 0}
+  laserSightPrefab: {fileID: 4767516254899738588, guid: ac4599d582dcc4953860ae2648296106, type: 3}
+  aimDuration: 1.5
+  laserOvershoot: 5
