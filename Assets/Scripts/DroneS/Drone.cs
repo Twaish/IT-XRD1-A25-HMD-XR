@@ -40,6 +40,7 @@ public class Drone : MonoBehaviour
     private LineRenderer currentSight;
 
     public event Action OnDeath;
+    public event Action OnFire;
 
     void Start()
     {
@@ -159,6 +160,7 @@ public class Drone : MonoBehaviour
         GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
         LaserProjectile laserScript = laser.GetComponent<LaserProjectile>();
         laserScript.originDrone = gameObject;
+        OnFire?.Invoke();
     }
 
     Vector3 ComputeSeparationForce()
