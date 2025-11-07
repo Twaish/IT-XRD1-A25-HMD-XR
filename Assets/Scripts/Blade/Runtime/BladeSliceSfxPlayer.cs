@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SoundPlayer))]
 [RequireComponent(typeof(BladeSlicer))]
-public class SliceSfxPlayer : MonoBehaviour
+public class BladeSliceSfxPlayer : MonoBehaviour
 {
     private BladeSlicer bladeSlicer;
     private SoundPlayer soundPlayer;
