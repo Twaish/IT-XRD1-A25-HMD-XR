@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SoundPlayer))]
-public class DeflectSfxPlayer : MonoBehaviour
+public class BladeDeflectSfxPlayer : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private BladeDeflect smallDeflectZone;
