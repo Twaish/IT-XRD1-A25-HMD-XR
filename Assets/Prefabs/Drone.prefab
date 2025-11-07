@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 3429679332443764037}
   - component: {fileID: 4219631752520865151}
   - component: {fileID: 97974133345712775}
+  - component: {fileID: 5368352385336463553}
+  - component: {fileID: 8478544282602678014}
   m_Layer: 6
   m_Name: Drone
   m_TagString: Drone
@@ -202,3 +204,34 @@ MonoBehaviour:
   laserSightPrefab: {fileID: 4767516254899738588, guid: ac4599d582dcc4953860ae2648296106, type: 3}
   aimDuration: 1.5
   laserOvershoot: 5
+--- !u!114 &5368352385336463553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578413411936743558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2f7a39382c8d643adead328274e53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
+  soundList:
+  - name: fire
+    clip: {fileID: 8300000, guid: 9e5ccbaa23213c24ca13785ca2dce153, type: 3}
+    defaultVolume: 0.5
+    isSpatial: 1
+    delay: 0
+  initialPoolSize: 1
+--- !u!114 &8478544282602678014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578413411936743558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b05199302700840a0c6c49cfa5b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroneFireSfxPlayer
