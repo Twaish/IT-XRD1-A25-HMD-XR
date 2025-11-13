@@ -497,6 +497,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!4 &441087507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &465107851 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7209245726273454000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
@@ -1268,6 +1273,7 @@ MonoBehaviour:
   player: {fileID: 1323940886}
   deflectForce: 30
   bigBoxRandomAngle: 20
+  deflectScheme: 1
 --- !u!1 &2079174758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,6 +1509,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 607166910909723563, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 607166910909723563, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -1510,6 +1520,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3150284259679879599, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_ThrowOnDetach
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150284259679879599, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_ForceGravityOnDetach
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4385149175708207400, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.02
@@ -1606,6 +1624,10 @@ PrefabInstance:
       propertyPath: sliceableLayer.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 6729959331608251806, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: smallDeflectZone
+      value: 
+      objectReference: {fileID: 1906321555}
     - target: {fileID: 7209245726273454000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.452
@@ -1670,10 +1692,47 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 188318877}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1480984767929412849}
     - targetCorrespondingSourceObject: {fileID: 3053747188641317084, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1906321555}
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+--- !u!1 &1480984767929412848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 1480984767929412847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1480984767929412849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480984767929412848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223d07890534c4a288980756333eb0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaberRecall
+  rightHand: {fileID: 441087507}
+  rightHandInteractor: {fileID: 0}
+  recallAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Recall
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1c59f22c-9a9e-4fd6-8107-22289f8ba981
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  recallForce: 40
+  rotateSpeed: 10
+  grabDistance: 0.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
