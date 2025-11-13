@@ -16,10 +16,17 @@ public class SlightHomingThrow : MonoBehaviour
 
     [Header("Throw Settings")]
     [Tooltip("Time in seconds during which homing is active after throw.")]
-    public float homingDuration = 0.5f; 
+    public float homingDuration = 0.5f;
 
     [Tooltip("Rotate object to face movement direction.")]
     public bool rotateTowardsVelocity = true;
+
+    [Header("Flight Effects")]
+    [Tooltip("How fast the projectile spins while flying.")]
+    public float spinSpeed = 720f;
+
+    [Tooltip("Extra acceleration toward the target or flight direction.")]
+    public float acceleration = 5f;
 
     private Rigidbody rb;
     private Transform target;
@@ -47,15 +54,24 @@ public class SlightHomingThrow : MonoBehaviour
         if (target == null)
             FindNearestTarget();
 
-        if (target != null && rb.linearVelocity.magnitude > 0.01f)
+        if (rb.linearVelocity.magnitude > 0.01f)
         {
-            Vector3 toTarget = (target.position - transform.position).normalized;
-            Vector3 newDir = Vector3.Lerp(rb.linearVelocity.normalized, toTarget, homingStrength).normalized;
+            Vector3 newDir = rb.linearVelocity.normalized;
+
+            if (target != null)
+            {
+                Vector3 toTarget = (target.position - transform.position).normalized;
+                newDir = Vector3.Lerp(rb.linearVelocity.normalized, toTarget, homingStrength).normalized;
+            }
+
+            rb.AddForce(newDir * acceleration, ForceMode.Acceleration);
 
             rb.linearVelocity = newDir * rb.linearVelocity.magnitude;
 
-            if (rotateTowardsVelocity && rb.linearVelocity.sqrMagnitude > 0.001f)
-                transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+            if (rotateTowardsVelocity)
+                //transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+
+            transform.Rotate(Vector3.forward, spinSpeed * Time.fixedDeltaTime, Space.Self);
         }
     }
 
