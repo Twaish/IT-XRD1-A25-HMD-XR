@@ -96,7 +96,7 @@ public class Drone : MonoBehaviour
     {
         if (laserSightPrefab && !currentSight)
         {
-            GameObject sightObj = Instantiate(laserSightPrefab, firePoint.position, Quaternion.identity);
+            GameObject sightObj = Instantiate(laserSightPrefab, firePoint.position, Quaternion.identity, transform);
             currentSight = sightObj.GetComponent<LineRenderer>();
         }
 
@@ -110,17 +110,15 @@ public class Drone : MonoBehaviour
             {
                 currentSight.SetPosition(0, firePoint.position);
 
-                Vector3 dir = (player.position - firePoint.position).normalized;
+                Vector3 aimTarget = player.position + Vector3.up * -0.2f;
+                Vector3 dir = (aimTarget - firePoint.position).normalized;
 
-                // Start ray from fire point and extend beyond the player
-                float beamLength = detectionRange; // total max beam length
-                float extraDistance = 5f;          // goes this much *past* the player
+                float beamLength = detectionRange; 
+                float extraDistance = 5f;          
 
-                // Check if something is behind player to hit instead
                 RaycastHit hit;
                 Vector3 beamEnd;
 
-                // Extend ray slightly beyond player
                 Vector3 extendedTarget = player.position + dir * extraDistance;
 
                 if (Physics.Raycast(firePoint.position, dir, out hit, beamLength))
@@ -132,7 +130,6 @@ public class Drone : MonoBehaviour
                     beamEnd = firePoint.position + dir * beamLength;
                 }
 
-                // If the player was hit first, override to ensure it continues past
                 float distToPlayer = Vector3.Distance(firePoint.position, player.position);
                 if (distToPlayer + extraDistance < beamLength)
                 {
@@ -199,7 +196,15 @@ public class Drone : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        StopAllCoroutines();
+
+        if (currentSight)
+        {
+            Destroy(currentSight.gameObject);
+            currentSight = null;
+        }
+
         OnDeath?.Invoke();
+        Destroy(gameObject);
     }
 }
