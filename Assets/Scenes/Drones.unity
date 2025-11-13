@@ -1840,6 +1840,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1480984767929412849}
+    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1480984767929412854}
+    - targetCorrespondingSourceObject: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1480984767929412855}
     - targetCorrespondingSourceObject: {fileID: 3053747188641317084, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1906321555}
@@ -1878,6 +1884,35 @@ MonoBehaviour:
   recallForce: 40
   rotateSpeed: 10
   grabDistance: 0.25
+--- !u!114 &1480984767929412854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480984767929412848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dedf96f9fd6c49c6ad28f38d21b381e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlightHomingThrow
+  enemyTag: Drone
+  homingStrength: 0.201
+  targetSearchRadius: 100
+  homingDuration: 25
+  rotateTowardsVelocity: 1
+--- !u!114 &1480984767929412855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480984767929412848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac346a3958352410eb50810592594afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HomingThrowActivator
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
