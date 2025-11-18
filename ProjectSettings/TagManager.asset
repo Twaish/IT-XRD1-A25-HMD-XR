@@ -7,6 +7,9 @@ TagManager:
   - Anchor
   - Sliceable
   - Sword
+  - Laser
+  - Saber
+  - Drone
   layers:
   - Default
   - TransparentFX
@@ -15,9 +18,9 @@ TagManager:
   - Water
   - UI
   - Sliceable
-  - 
-  - 
-  - 
+  - DeflectSmall
+  - DeflectBig
+  - Laser
   - 
   - 
   - 
