@@ -39,7 +39,6 @@ public class LaserProjectile : MonoBehaviour
         }
         else if (!other.CompareTag("Drone") && !other.CompareTag("Saber"))
         {
-            Debug.Log(other.gameObject);
             Destroy(gameObject);
         }
     }
