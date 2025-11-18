@@ -41,8 +41,10 @@ public class Drone : MonoBehaviour
 
     public event Action OnDeath;
     public event Action OnFire;
-    
+
     private bool isAiming = false;
+    private Vector3 lockedAimDirection;
+    private Vector3 lockedBeamEnd;
 
     void Start()
     {
@@ -130,12 +132,38 @@ public class Drone : MonoBehaviour
             currentSight = sightObj.GetComponent<LineRenderer>();
         }
 
-        // Save the rotation before aiming
+        // Save rotation before aiming
         Quaternion originalRotation = transform.rotation;
 
-        // Rotation that shows the BACK side (180° flip)
+        // Flip instantly
         Quaternion flippedRotation = originalRotation * Quaternion.Euler(0, 180f, 0);
         transform.rotation = flippedRotation;
+
+        // Lock aim
+        Vector3 aimTarget = player.position + Vector3.up * -0.2f;
+        lockedAimDirection = (aimTarget - firePoint.position).normalized;
+
+        float beamLength = detectionRange;
+        float extraDistance = 5f;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(firePoint.position, lockedAimDirection, out hit, beamLength))
+        {
+            lockedBeamEnd = hit.point;
+        }
+        else
+        {
+            lockedBeamEnd = firePoint.position + lockedAimDirection * beamLength;
+        }
+
+        // Overshoot if player is closer than full beam length
+        float distToPlayer = Vector3.Distance(firePoint.position, player.position);
+        if (distToPlayer + extraDistance < beamLength)
+        {
+            lockedBeamEnd =
+                firePoint.position + lockedAimDirection * (distToPlayer + extraDistance);
+        }
 
         float timer = 0f;
 
@@ -143,38 +171,11 @@ public class Drone : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            //Laser sight
+            // Draw the laser but DO NOT change direction — use locked data
             if (currentSight)
             {
                 currentSight.SetPosition(0, firePoint.position);
-
-                Vector3 aimTarget = player.position + Vector3.up * -0.2f;
-                Vector3 dir = (aimTarget - firePoint.position).normalized;
-
-                float beamLength = detectionRange;
-                float extraDistance = 5f;
-
-                RaycastHit hit;
-                Vector3 beamEnd;
-
-                Vector3 extendedTarget = player.position + dir * extraDistance;
-
-                if (Physics.Raycast(firePoint.position, dir, out hit, beamLength))
-                {
-                    beamEnd = hit.point;
-                }
-                else
-                {
-                    beamEnd = firePoint.position + dir * beamLength;
-                }
-
-                float distToPlayer = Vector3.Distance(firePoint.position, player.position);
-                if (distToPlayer + extraDistance < beamLength)
-                {
-                    beamEnd = firePoint.position + dir * (distToPlayer + extraDistance);
-                }
-
-                currentSight.SetPosition(1, beamEnd);
+                currentSight.SetPosition(1, lockedBeamEnd); // <-- Locked
             }
 
             yield return null;
@@ -187,9 +188,8 @@ public class Drone : MonoBehaviour
             currentSight = null;
         }
 
-        // Restore normal rotation (face player again)
+        // Restore normal rotation
         transform.rotation = originalRotation;
-
         isAiming = false;
 
         FireLaser();
@@ -199,9 +199,15 @@ public class Drone : MonoBehaviour
     {
         if (!laserPrefab || !firePoint)
             return;
-        GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+
+        // Projectile rotation based on locked direction
+        Quaternion shotRotation = Quaternion.LookRotation(lockedAimDirection);
+
+        GameObject laser = Instantiate(laserPrefab, firePoint.position, shotRotation);
+
         LaserProjectile laserScript = laser.GetComponent<LaserProjectile>();
         laserScript.originDrone = gameObject;
+
         OnFire?.Invoke();
     }
 
