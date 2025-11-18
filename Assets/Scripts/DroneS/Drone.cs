@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Drone : MonoBehaviour
@@ -11,7 +11,7 @@ public class Drone : MonoBehaviour
     public float moveSmooth = 2f;
     public float hoverAmplitude = 0.5f;
     public float hoverSpeed = 2f;
-    public float minHeight = 1.5f;   
+    public float minHeight = 1.5f;
     public float maxHeight = 5f;
 
     [Header("Separation / Avoidance")]
@@ -41,6 +41,8 @@ public class Drone : MonoBehaviour
 
     public event Action OnDeath;
     public event Action OnFire;
+    
+    private bool isAiming = false;
 
     void Start()
     {
@@ -62,17 +64,26 @@ public class Drone : MonoBehaviour
 
     void Update()
     {
-        if (!player) return;
+        if (!player)
+            return;
 
         fireTimer -= Time.deltaTime;
 
         Vector3 toDrone = transform.position - player.position;
         Vector3 tangent = Vector3.Cross(Vector3.up, toDrone).normalized;
-        orbitTarget = player.position + toDrone.normalized * orbitRadius + tangent * Time.deltaTime * orbitSpeed;
+        orbitTarget =
+            player.position
+            + toDrone.normalized * orbitRadius
+            + tangent * Time.deltaTime * orbitSpeed;
 
-        Vector3 desiredPosition = Vector3.Lerp(transform.position, orbitTarget, moveSmooth * Time.deltaTime);
+        Vector3 desiredPosition = Vector3.Lerp(
+            transform.position,
+            orbitTarget,
+            moveSmooth * Time.deltaTime
+        );
 
-        desiredPosition.y += Mathf.Sin(Time.time * hoverSpeed + hoverOffset) * hoverAmplitude * Time.deltaTime;
+        desiredPosition.y +=
+            Mathf.Sin(Time.time * hoverSpeed + hoverOffset) * hoverAmplitude * Time.deltaTime;
 
         Vector3 avoidance = ComputeSeparationForce();
         avoidance = Vector3.Lerp(previousAvoidance, avoidance, Time.deltaTime * 5f);
@@ -83,22 +94,48 @@ public class Drone : MonoBehaviour
 
         transform.position = desiredPosition;
 
-        Vector3 lookDir = (player.position - transform.position).normalized;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), 5f * Time.deltaTime);
+        if (!isAiming)
+        {
+            Vector3 lookDir = (player.position - transform.position).normalized;
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(lookDir),
+                5f * Time.deltaTime
+            );
+        }
 
-        if (Vector3.Distance(transform.position, player.position) < detectionRange && fireTimer <= 0f)
+        if (
+            Vector3.Distance(transform.position, player.position) < detectionRange
+            && fireTimer <= 0f
+        )
         {
             StartCoroutine(AimAndFire());
             fireTimer = fireRate + aimDuration;
         }
     }
+
     private IEnumerator AimAndFire()
     {
+        isAiming = true;
+
+        // Create laser sight if needed
         if (laserSightPrefab && !currentSight)
         {
-            GameObject sightObj = Instantiate(laserSightPrefab, firePoint.position, Quaternion.identity, transform);
+            GameObject sightObj = Instantiate(
+                laserSightPrefab,
+                firePoint.position,
+                Quaternion.identity,
+                transform
+            );
             currentSight = sightObj.GetComponent<LineRenderer>();
         }
+
+        // Save the rotation before aiming
+        Quaternion originalRotation = transform.rotation;
+
+        // Rotation that shows the BACK side (180° flip)
+        Quaternion flippedRotation = originalRotation * Quaternion.Euler(0, 180f, 0);
+        transform.rotation = flippedRotation;
 
         float timer = 0f;
 
@@ -106,6 +143,7 @@ public class Drone : MonoBehaviour
         {
             timer += Time.deltaTime;
 
+            //Laser sight
             if (currentSight)
             {
                 currentSight.SetPosition(0, firePoint.position);
@@ -113,8 +151,8 @@ public class Drone : MonoBehaviour
                 Vector3 aimTarget = player.position + Vector3.up * -0.2f;
                 Vector3 dir = (aimTarget - firePoint.position).normalized;
 
-                float beamLength = detectionRange; 
-                float extraDistance = 5f;          
+                float beamLength = detectionRange;
+                float extraDistance = 5f;
 
                 RaycastHit hit;
                 Vector3 beamEnd;
@@ -142,18 +180,25 @@ public class Drone : MonoBehaviour
             yield return null;
         }
 
+        // Remove laser sight
         if (currentSight)
         {
             Destroy(currentSight.gameObject);
             currentSight = null;
         }
 
+        // Restore normal rotation (face player again)
+        transform.rotation = originalRotation;
+
+        isAiming = false;
+
         FireLaser();
     }
 
     void FireLaser()
     {
-        if (!laserPrefab || !firePoint) return;
+        if (!laserPrefab || !firePoint)
+            return;
         GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
         LaserProjectile laserScript = laser.GetComponent<LaserProjectile>();
         laserScript.originDrone = gameObject;
@@ -168,9 +213,11 @@ public class Drone : MonoBehaviour
 
         foreach (var neighbor in neighbors)
         {
-            if (neighbor.gameObject == gameObject) continue;
+            if (neighbor.gameObject == gameObject)
+                continue;
 
-            if (!neighbor.CompareTag(droneTag)) continue;
+            if (!neighbor.CompareTag(droneTag))
+                continue;
 
             Vector3 away = transform.position - neighbor.transform.position;
             float distance = away.magnitude;
