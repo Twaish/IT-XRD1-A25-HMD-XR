@@ -8,6 +8,7 @@ public class LaserProjectile : MonoBehaviour
     public bool isDeflected = false;
     private Rigidbody rb;
     public GameObject originDrone;
+    public GameObject destroyParticlePrefab;
 
     void Start()
     {
@@ -40,6 +41,14 @@ public class LaserProjectile : MonoBehaviour
         else if (!other.CompareTag("Drone") && !other.CompareTag("Saber"))
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (destroyParticlePrefab != null)
+        {
+            Instantiate(destroyParticlePrefab, transform.position, transform.rotation);
         }
     }
 }

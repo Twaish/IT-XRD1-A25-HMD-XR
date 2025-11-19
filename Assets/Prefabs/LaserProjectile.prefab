@@ -159,6 +159,7 @@ MonoBehaviour:
   lifetime: 5
   isDeflected: 0
   originDrone: {fileID: 0}
+  destroyParticlePrefab: {fileID: 6376371721599143722, guid: 2e7be9763362642d58abd8b78cdb274e, type: 3}
 --- !u!96 &2980143680848972093
 TrailRenderer:
   serializedVersion: 3
