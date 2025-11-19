@@ -9,6 +9,8 @@ public class PlayerHitHandler : MonoBehaviour
 
     public InputAction resetAction;
 
+    private int previousSceneIndex;
+
     void OnEnable()
     {
         resetAction.Enable();
@@ -23,7 +25,10 @@ public class PlayerHitHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        RegisterHit();
+        if (other.CompareTag("Laser"))
+        {
+            RegisterHit();
+        }
     }
 
     void RegisterHit()
@@ -36,11 +41,15 @@ public class PlayerHitHandler : MonoBehaviour
 
     void EnableRealityCheck()
     {
+        previousSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene("Insane Asylum");
     }
 
     void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (previousSceneIndex != 0) 
+            SceneManager.LoadScene(previousSceneIndex);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
