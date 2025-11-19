@@ -15,9 +15,14 @@ public class Enemies : MonoBehaviour
     public float pauseAfterHit = 0.2f;
     
     private bool isCommittedToSwing = false;
-    private Transform player;
+    public Transform player;
     private float timeSinceLastSwing = 0f;
     private Quaternion originalStickRotation;
+
+    private Vector3 previousAvoidance;
+    public float separationDistance = 3f;
+    public float separationStrength = 2f;
+    public string enemyTag = "Enemy";  
 
     // 🔑 NEW: State & motion control
     private bool isStunned = false;
@@ -25,11 +30,19 @@ public class Enemies : MonoBehaviour
 
     void Start()
     {
-        player = Camera.main.transform;
+        /*player = Camera.main.transform;
         if (stick != null)
             originalStickRotation = stick.localRotation;
         if (stickHitbox != null)
-            stickHitbox.enabled = false;
+            stickHitbox.enabled = false;*/
+
+        if (!player)
+        {
+            Debug.LogWarning("EnemyDrone: Player not assigned!");
+            enabled = false;
+            return;
+        }
+
     }
 
     void Update()
@@ -49,6 +62,35 @@ public class Enemies : MonoBehaviour
             }
 
             float minSafe = distanceToStop * 0.7f;
+
+            //Collision advoidance
+            Vector3 avoidance = ComputeSeparationForce();
+            avoidance = Vector3.Lerp(previousAvoidance, avoidance, Time.deltaTime * 5f);
+            previousAvoidance = avoidance;
+
+            // 👇 Apply avoidance *in the movement step*, NOT to a nonexistent desiredPosition
+            Vector3 moveDir = Vector3.zero;
+
+            if (distanceToPlayer > distanceToStop)
+            {
+                moveDir = dirToPlayer.normalized;
+            }
+            else if (distanceToPlayer < minSafe && !isCommittedToSwing)
+            {
+                moveDir = -dirToPlayer.normalized * 0.8f;
+            }
+
+            // Add avoidance (project to ground plane to keep them on floor)
+            avoidance.y = 0f;  // ⚠️ Critical for ground enemies!
+            moveDir += avoidance * separationStrength * Time.deltaTime;  // strength already applied in ComputeSeparationForce, but extra scaling helps tuning
+
+            // Normalize to prevent speed boost from avoidance
+            if (moveDir.magnitude > 0.01f)
+                moveDir = moveDir.normalized;
+
+            transform.position += moveDir * speed * Time.deltaTime;
+
+            
 
             if (distanceToPlayer > distanceToStop)
             {
@@ -172,5 +214,28 @@ public class Enemies : MonoBehaviour
     {
         StopAllCoroutines();
         currentMotion = null;
+    }
+
+     Vector3 ComputeSeparationForce()
+    {
+        Vector3 force = Vector3.zero;
+
+        Collider[] neighbors = Physics.OverlapSphere(transform.position, separationDistance);
+
+        foreach (var neighbor in neighbors)
+        {
+            if (neighbor.gameObject == gameObject)
+                continue;
+
+            if (!neighbor.CompareTag(enemyTag))
+                continue;
+
+            Vector3 away = transform.position - neighbor.transform.position;
+            float distance = away.magnitude;
+            if (distance > 0f)
+                force += away.normalized / distance;
+        }
+        
+        return force * separationStrength;
     }
 }

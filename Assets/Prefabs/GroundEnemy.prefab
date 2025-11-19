@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 399817615067836157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.607, z: 0.40399998}
+  m_LocalPosition: {x: 0.25, y: 0.607, z: 0.4}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -105,8 +105,8 @@ GameObject:
   - component: {fileID: 1365478940803619325}
   - component: {fileID: 370518301216500674}
   m_Layer: 6
-  m_Name: MeeleEnemie
-  m_TagString: Untagged
+  m_Name: GroundEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -298,7 +298,7 @@ Transform:
   m_GameObject: {fileID: 2391824794147594436}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23600006, y: 0.607, z: 0.40399998}
+  m_LocalPosition: {x: -0.25, y: 0.607, z: 0.4}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -429,7 +429,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 028ce27d0f16b0f4a96ef8a1591e0dae, type: 2}
+  - {fileID: 2100000, guid: c0bf2acf3671945ab9997c92e1c643f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -584,7 +584,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc226930e8fad4c499969204cecfbc05, type: 2}
+  - {fileID: 2100000, guid: a82812c09f0eb2849b52ed03816623d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
