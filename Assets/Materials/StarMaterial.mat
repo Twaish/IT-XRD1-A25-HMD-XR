@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StarMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 9ad5d6e95ab714e458cd20feb7bc4219, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8e5bb50a62a9647b3a2078c6c16a87ca, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
