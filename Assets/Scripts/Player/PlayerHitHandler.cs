@@ -47,9 +47,6 @@ public class PlayerHitHandler : MonoBehaviour
 
     void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        if (previousSceneIndex != 0) 
-            SceneManager.LoadScene(previousSceneIndex);
-        else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Drones", LoadSceneMode.Single);
     }
 }
