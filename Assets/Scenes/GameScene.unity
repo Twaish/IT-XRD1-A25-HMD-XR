@@ -176,6 +176,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+--- !u!1 &303784553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 303784555}
+  - component: {fileID: 303784554}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &303784554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303784553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef6f8f3f91ca4434bd7cac1538dfc0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DroneSpawner
+  dronePrefab: {fileID: 8578413411936743558, guid: d4db808957ed24cb7be1a1e85f4719a6, type: 3}
+  initialSpawnLimit: 3
+  spawnArea: {x: 10, y: 5, z: 10}
+  player: {fileID: 2124941156}
+  minSpawnDelay: 0.5
+  maxSpawnDelay: 3
+  fixedSpawnDelay: 5
+  increaseInterval: 10
+  increaseAmount: 1
+--- !u!4 &303784555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303784553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.25, y: 1, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &415472982
 Mesh:
   m_ObjectHideFlags: 0
@@ -1631,6 +1684,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8f550b85193410683e4168b9695461, type: 3}
+--- !u!4 &2124941156 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 740798912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2140362833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1704,3 +1762,4 @@ SceneRoots:
   - {fileID: 1510023213}
   - {fileID: 45684182}
   - {fileID: 1900155316}
+  - {fileID: 303784555}

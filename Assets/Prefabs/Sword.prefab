@@ -1375,7 +1375,6 @@ GameObject:
   - component: {fileID: 1882565412386951012}
   - component: {fileID: 6502277127080503896}
   - component: {fileID: 3262420131468686064}
-  - component: {fileID: 490476291265549964}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -1475,26 +1474,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &490476291265549964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4543051106278829256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86122a5ab7118c6478cda58b66d21a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Sliceable
-  crossSectionMaterial: {fileID: 2100000, guid: 2edb876ca20f6ea40b4ebb61f96f1df1, type: 2}
-  sliceableLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  startSlicePoint: {fileID: 4852351168343741298}
-  endSlicePoint: {fileID: 2964262177773073899}
-  velocityEstimator: {fileID: 3718529590247007355}
-  cutForce: 1
 --- !u!1 &4735721107147197157
 GameObject:
   m_ObjectHideFlags: 0
