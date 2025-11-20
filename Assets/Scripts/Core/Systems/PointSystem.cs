@@ -27,4 +27,14 @@ public class PointSystem : MonoBehaviour
     }
 
     public int Points => points;
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    private void OnValidate()
+    {
+        if (Application.isPlaying)
+        {
+            OnPointsChanged?.Invoke(points);
+        }
+    }
+#endif
 }
