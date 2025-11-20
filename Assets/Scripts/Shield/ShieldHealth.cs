@@ -26,8 +26,8 @@ public class ShieldHealth : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Shield trigger hit by: " + other.name);
-        //DestroyNearestLaser();
-        if (!isRecharging)
+
+        if (other.CompareTag("Laser"))
         {
             TakeHit(1);
         }
