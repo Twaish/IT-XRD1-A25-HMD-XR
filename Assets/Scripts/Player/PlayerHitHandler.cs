@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerHitHandler : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerHitHandler : MonoBehaviour
     public InputAction resetAction;
 
     private int previousSceneIndex;
+
+    public event Action OnHit;
 
     void OnEnable()
     {
@@ -27,6 +30,7 @@ public class PlayerHitHandler : MonoBehaviour
     {
         if (other.CompareTag("Laser"))
         {
+            OnHit?.Invoke();
             RegisterHit();
         }
     }
