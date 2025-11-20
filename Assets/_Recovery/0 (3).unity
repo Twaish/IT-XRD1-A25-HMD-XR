@@ -354,6 +354,8 @@ MonoBehaviour:
   swingUpTime: 0.25
   pauseAfterHit: 0.2
   player: {fileID: 0}
+  retreatDistance: 1
+  maxDistance: 3
   swordRecoveryTime: 0.3
 --- !u!114 &56662773
 MonoBehaviour:
@@ -1183,7 +1185,7 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
+  m_OverrideVoxelSize: 1
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: cf08d3d068627874384b3ce08c3979be, type: 2}

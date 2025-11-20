@@ -756,7 +756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &514491980
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1596,25 +1596,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3053747188641317084, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      propertyPath: m_Layer
+    - target: {fileID: 490476291265549964, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_Name
       value: Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5077838892200239179, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547856334176430565, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1731094979}
-    - target: {fileID: 5547856334176430565, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      propertyPath: deflectScheme
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209245726273454000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1656,12 +1644,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7543589654942666759, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1731094979}
     m_RemovedComponents:
-    - {fileID: 7310929952507101457, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+    - {fileID: 490476291265549964, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
