@@ -14,30 +14,43 @@ public class Enemies : MonoBehaviour
     public float swingUpTime = 0.25f;
     public float pauseAfterHit = 0.2f;
     
-    private bool isCommittedToSwing = false;
     public Transform player;
     private float timeSinceLastSwing = 0f;
     private Quaternion originalStickRotation;
 
-    // 🔑 NEW: State & motion control
+    private bool isCommittedToSwing = false;
     private bool isStunned = false;
     private Coroutine currentMotion;
 
+    private UnityEngine.AI.NavMeshAgent agent;
+
     void Start()
     {
-        /*player = Camera.main.transform;
-        if (stick != null)
-            originalStickRotation = stick.localRotation;
-        if (stickHitbox != null)
-            stickHitbox.enabled = false;*/
-
-        if (!player)
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent == null)
         {
-            Debug.LogWarning("EnemyDrone: Player not assigned!");
+            Debug.LogError("NavMeshAgent missing on enemy!");
             enabled = false;
             return;
         }
 
+        // Configure agent at runtime
+        agent.speed = speed;
+        agent.stoppingDistance = distanceToStop;
+        agent.updateRotation = false; // We handle rotation manually for smoother look-at
+
+        if (stick != null)
+            originalStickRotation = stick.localRotation;
+
+        if (stickHitbox != null)
+            stickHitbox.enabled = false;
+
+        if (player == null)
+        {
+            Debug.LogWarning("Enemy: Player not assigned!");
+            enabled = false;
+            return;
+        }
     }
 
     void Update()
@@ -47,21 +60,26 @@ public class Enemies : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange)
         {
-            // Rotate to face player
-            Vector3 dirToPlayer = player.position - transform.position;
+            if (!isStunned)
+            {
+                agent.SetDestination(player.position);
+            }
+
+            // Rotate to face player, unless it is moving around other objects or such.
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
             dirToPlayer.y = 0;
             if (dirToPlayer.magnitude > 0.01f)
             {
-                Quaternion target = Quaternion.LookRotation(dirToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5f);
+                Vector3 lookDir = agent.velocity.magnitude > 0.1f ? agent.velocity : dirToPlayer;
+                Quaternion targetRot = Quaternion.LookRotation(lookDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 8f);
             }
 
             float minSafe = distanceToStop * 0.7f;
-
             if (distanceToPlayer > distanceToStop)
             {
-                transform.position += dirToPlayer.normalized * speed * Time.deltaTime;
-                timeSinceLastSwing = swingCooldown / 3;
+                //transform.position += dirToPlayer.normalized * speed * Time.deltaTime;
+                timeSinceLastSwing = Mathf.Max(0, swingCooldown / 3);
             }
             else if (distanceToPlayer < minSafe && !isCommittedToSwing)
             {
@@ -80,9 +98,12 @@ public class Enemies : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            agent.ResetPath();
+        }
     }
 
-    // 🔁 Unified safe rotation helper
     private IEnumerator SmoothRotateTo(Quaternion target, float duration)
     {
         if (stick == null) yield break;
@@ -99,11 +120,9 @@ public class Enemies : MonoBehaviour
 
     IEnumerator SwingOnce()
     {
-        if (stick == null || isStunned) yield break; // 🔑 Early exit if stunned
+        if (stick == null || isStunned) yield break;
 
-        // 🔑 Cancel any ongoing motion (including prior stun recovery)
         if (currentMotion != null) StopCoroutine(currentMotion);
-
         isCommittedToSwing = true;
 
         // Wind-up
@@ -120,12 +139,14 @@ public class Enemies : MonoBehaviour
         if (stickHitbox != null) stickHitbox.enabled = false;
 
         // Recovery — only if not stunned *during* hit pause
+        if (currentMotion != null) StopCoroutine(currentMotion);
+            currentMotion = StartCoroutine(SmoothStickRecovery(swordRecoveryTime));
+        
         isCommittedToSwing = false;
         if (!isStunned)
         {
             yield return SmoothRotateTo(originalStickRotation, swingUpTime);
         }
-        // If stunned during pauseAfterHit, ApplyStun() has already taken over
     }
 
     [SerializeField] private float swordRecoveryTime = 0.3f;
@@ -133,19 +154,25 @@ public class Enemies : MonoBehaviour
     public void ApplyStun(float stunDuration = 0.5f)
     {
         Debug.Log("Stunned");
-        // 🔑 1. Block attacks for `stunDuration` seconds
-        timeSinceLastSwing = -stunDuration; // will take `stunDuration` seconds to reach 0
+        timeSinceLastSwing = -stunDuration;
 
-        // 🔑 2. Cancel any active swing (but keep hitbox off)
         isCommittedToSwing = false;
         if (stickHitbox != null) stickHitbox.enabled = false;
 
-        // 🔑 3. Visually recover sword — in FIXED time (e.g. 0.3s), unrelated to stunDuration
         if (stick != null)
         {
             if (currentMotion != null) StopCoroutine(currentMotion);
             currentMotion = StartCoroutine(SmoothStickRecovery(swordRecoveryTime));
         }
+
+        StartCoroutine(ResumeAfterStun(stunDuration));
+    }
+
+    IEnumerator ResumeAfterStun(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+        if (agent != null) agent.isStopped = false;
     }
 
     private IEnumerator SmoothStickRecovery(float duration)
@@ -163,16 +190,22 @@ public class Enemies : MonoBehaviour
         currentMotion = null;
     }
 
-    // Keep StopSwinging for death/cleanup
     public void StopSwinging()
     {
-        StopAllCoroutines(); // okay here — total reset
+        StopAllCoroutines();
         isCommittedToSwing = false;
         isStunned = false;
         timeSinceLastSwing = 0;
         currentMotion = null;
         if (stickHitbox != null) stickHitbox.enabled = false;
         if (stick != null) stick.localRotation = originalStickRotation;
+
+        // Also stop NavMesh movement
+        if (agent != null)
+        {
+            agent.isStopped = true;
+            agent.ResetPath();
+        }
     }
 
     // Optional: cleanup if object is disabled
@@ -180,5 +213,6 @@ public class Enemies : MonoBehaviour
     {
         StopAllCoroutines();
         currentMotion = null;
+        if (agent != null) agent.ResetPath();
     }
 }
