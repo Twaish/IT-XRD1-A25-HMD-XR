@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6244552329074958055}
   - component: {fileID: 2118527020013332402}
   - component: {fileID: 5810785538468981544}
-  - component: {fileID: 7290024860763410586}
   - component: {fileID: 1086829484677892857}
   m_Layer: 0
   m_Name: Shield Hexagon
@@ -3133,23 +3132,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7290024860763410586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124227761793424078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49378f9eba4c94a2cba8827f1b650bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShieldHealth
-  maxHealth: 25
-  rechargeTime: 5
-  shieldRenderer: {fileID: 5810785538468981544}
-  BigDeflectCollider: {fileID: 1964283653187330296}
-  SmallDeflectCollider: {fileID: 4177579290498041846}
 --- !u!33 &1086829484677892857
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3616,6 +3598,7 @@ GameObject:
   - component: {fileID: 1796115026525721934}
   - component: {fileID: 1341140817241070358}
   - component: {fileID: 3358181425712463866}
+  - component: {fileID: 3886207193361114161}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -3793,3 +3776,19 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &3886207193361114161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142977029754784180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49378f9eba4c94a2cba8827f1b650bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldHealth
+  maxHealth: 10
+  rechargeTime: 5
+  shieldRenderer: {fileID: 5810785538468981544}
+  shieldCollider: {fileID: 1964283653187330296}
