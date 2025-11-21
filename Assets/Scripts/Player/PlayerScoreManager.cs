@@ -7,7 +7,7 @@ public class PlayerScoreManager : MonoBehaviour
     [Header("Point Sources")]
     [SerializeField] private DroneSpawner droneSpawner;
     [SerializeField] private EnemySpawner robotSpawner;
-    // [SerializeField] private TimeManager timeManager;
+    [SerializeField] private TimerManager timerManager;
 
     [SerializeField] private BladeDeflect bigDeflectArea;
     [SerializeField] private BladeDeflect smallDeflectArea;
@@ -18,7 +18,7 @@ public class PlayerScoreManager : MonoBehaviour
     [SerializeField] private int bigDeflectPoints = 5;
     [SerializeField] private int smallDeflectPoints = 5;
 
-    private float timeAccumulator = 0f;
+    private float timerAccumulator = 0f;
 
     private void Start()
     {
@@ -26,8 +26,7 @@ public class PlayerScoreManager : MonoBehaviour
         // TODO: Implement OnDeath event for robots
         // robotSpawner.OnRobotDeath += HandleRobotDeath;
         
-        // TODO: Implement TimeManager
-        // timeManager.OnTimerUpdated += HandleTimerUpdate;
+        timerManager.OnTimerUpdated += HandleTimerUpdate;
 
         bigDeflectArea.OnDeflect += HandleBigDeflect;
         smallDeflectArea.OnDeflect += HandleSmallDeflect;
@@ -47,12 +46,12 @@ public class PlayerScoreManager : MonoBehaviour
 
     private void HandleTimerUpdate(float time)
     {
-        timeAccumulator += time;
+        timerAccumulator += time;
 
-        if (timeAccumulator >= 0.5f)
+        if (timerAccumulator >= 0.5f)
         {
             pointSystem.AddPoints(1);
-            timeAccumulator -= 0.5f;
+            timerAccumulator -= 0.5f;
         }
     }
 
