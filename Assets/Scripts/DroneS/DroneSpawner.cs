@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using Random = UnityEngine.Random;
 
 public class DroneSpawner : MonoBehaviour
 {
@@ -21,6 +23,8 @@ public class DroneSpawner : MonoBehaviour
 
     private List<GameObject> activeDrones = new List<GameObject>();
     private int currentSpawnLimit;
+
+    public event Action<Drone> OnDroneDeath;
 
     void Start()
     {
@@ -43,9 +47,11 @@ public class DroneSpawner : MonoBehaviour
                     Random.Range(-spawnArea.z, spawnArea.z)
                 );
 
-                GameObject drone = Instantiate(dronePrefab, pos, Quaternion.identity);
-                drone.GetComponent<Drone>().player = player;
-                activeDrones.Add(drone);
+                GameObject droneGO = Instantiate(dronePrefab, pos, Quaternion.identity);
+                Drone drone = droneGO.GetComponent<Drone>();
+                drone.player = player;
+                drone.OnDeath += HandleDroneDeath;
+                activeDrones.Add(droneGO);
             }
 
             float delay = Random.Range(minSpawnDelay, maxSpawnDelay) + fixedSpawnDelay;
@@ -61,5 +67,11 @@ public class DroneSpawner : MonoBehaviour
             currentSpawnLimit += increaseAmount;
             Debug.Log("New spawn limit: " + currentSpawnLimit);
         }
+    }
+
+    private void HandleDroneDeath(Drone drone)
+    {
+        drone.OnDeath -= HandleDroneDeath;
+        OnDroneDeath?.Invoke(drone);
     }
 }
