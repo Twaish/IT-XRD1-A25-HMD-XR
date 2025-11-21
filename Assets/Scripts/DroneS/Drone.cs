@@ -39,7 +39,7 @@ public class Drone : MonoBehaviour
     public float laserOvershoot = 5f;
     private LineRenderer currentSight;
 
-    public event Action OnDeath;
+    public event Action<Drone> OnDeath;
     public event Action OnFire;
 
     private bool isAiming = false;
@@ -239,7 +239,7 @@ public class Drone : MonoBehaviour
             currentSight = null;
         }
 
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
         Destroy(gameObject);
     }
 }
