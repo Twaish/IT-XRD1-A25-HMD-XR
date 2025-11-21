@@ -86,11 +86,10 @@ public class Enemies : MonoBehaviour
                 transform.position -= dirToPlayer.normalized * speed * Time.deltaTime * 0.8f;
                 timeSinceLastSwing = swingCooldown / 3;
             }
-            else if (!isStunned) // 🔑 Only allow swing counting if NOT stunned
+            else if (!isStunned) 
             {
-                timeSinceLastSwing += Time.deltaTime; // always increment
+                timeSinceLastSwing += Time.deltaTime; 
 
-                // But only allow swing if NOT mid-swing AND timer is ready
                 if (timeSinceLastSwing >= swingCooldown && !isCommittedToSwing && stick != null)
                 {
                     timeSinceLastSwing = 0;
@@ -130,7 +129,7 @@ public class Enemies : MonoBehaviour
         yield return SmoothRotateTo(windup, 0.15f);
 
         // Swing down
-        Quaternion hit = Quaternion.Euler(60, 0, 0);
+        Quaternion hit = Quaternion.Euler(72, 0, 10);
         yield return SmoothRotateTo(hit, swingDownTime);
 
         // Hit phase
@@ -208,11 +207,12 @@ public class Enemies : MonoBehaviour
         }
     }
 
+    /*
     // Optional: cleanup if object is disabled
     void OnDisable()
     {
         StopAllCoroutines();
         currentMotion = null;
         if (agent != null) agent.ResetPath();
-    }
+    } */
 }

@@ -11,5 +11,11 @@ public class PlayerHitHandler : MonoBehaviour
         {
             OnHit?.Invoke();
         }
+
+        if (other.CompareTag("Sword"))
+        {
+            Debug.Log("I HAVE BEEN HIT AND AM IN A INSUFFRABLE AMOUNT OF PAIN I AM DEFENETLY ABOUT TO GO INSANE I CAN NOT TAKE THIS ANYMORE PLS SAVE ME TAKE ME AWAY BFFORE I EAT MY SABER; AAAAAHHHHHHHRRHRHRHHRHRHRRRRHHHH");
+            RegisterHit();
+        }
     }
 }

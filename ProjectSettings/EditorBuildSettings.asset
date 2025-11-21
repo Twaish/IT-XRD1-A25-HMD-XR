@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MeeleEnemies.unity
     guid: 40c31d098fd58894798f16e6ce57cf86
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Drones.unity
     guid: 166c96119a3074c90abbfc434e9e31b5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Insane Asylum.unity
     guid: 6ddb28e1800f843d4a23a885a469443c
   m_configObjects:
