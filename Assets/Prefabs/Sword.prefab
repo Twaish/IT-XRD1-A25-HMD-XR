@@ -2417,7 +2417,6 @@ GameObject:
   - component: {fileID: 607166910909723563}
   - component: {fileID: 3150284259679879599}
   - component: {fileID: 6322428077488620516}
-  - component: {fileID: 6729959331608251806}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Saber
@@ -2617,20 +2616,6 @@ MonoBehaviour:
     isSpatial: 1
     delay: 0
   initialPoolSize: 5
---- !u!114 &6729959331608251806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4805321980195045753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9b961456bb838044a2016c0b7b064a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeflectSfxPlayer
-  smallDeflectZone: {fileID: 0}
-  bigDeflectZone: {fileID: 0}
 --- !u!1 &5210088064613941892
 GameObject:
   m_ObjectHideFlags: 0
