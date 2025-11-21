@@ -143,11 +143,11 @@ MonoBehaviour:
   droneTag: Drone
   laserPrefab: {fileID: 6601173930321713268, guid: b37f410c8724c47fb9cbf0505e6f40ea, type: 3}
   firePoint: {fileID: 8535419197212348802}
-  fireRate: 2
+  fireRate: 3
   detectionRange: 30
   player: {fileID: 0}
   laserSightPrefab: {fileID: 4767516254899738588, guid: ac4599d582dcc4953860ae2648296106, type: 3}
-  aimDuration: 1.5
+  aimDuration: 2
   laserOvershoot: 5
 --- !u!114 &5368352385336463553
 MonoBehaviour:
