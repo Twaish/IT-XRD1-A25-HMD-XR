@@ -22,7 +22,7 @@ public class Drone : MonoBehaviour
     [Header("Shooting")]
     public GameObject laserPrefab;
     public Transform firePoint;
-    public float fireRate = 2f;
+    public float fireDelay = 2f;
     public float detectionRange = 30f;
 
     [Header("References")]
@@ -43,8 +43,8 @@ public class Drone : MonoBehaviour
     public event Action OnFire;
 
     private bool isAiming = false;
-    private Vector3 lockedAimDirection;
     private Vector3 lockedBeamEnd;
+    private Vector3 lockedPlayerPosition;
 
     void Start()
     {
@@ -61,7 +61,7 @@ public class Drone : MonoBehaviour
         offset.y = Mathf.Clamp(offset.y, minHeight, maxHeight);
         orbitTarget = player.position + offset;
 
-        fireTimer = fireRate;
+        fireTimer = fireDelay;
     }
 
     void Update()
@@ -112,7 +112,7 @@ public class Drone : MonoBehaviour
         )
         {
             StartCoroutine(AimAndFire());
-            fireTimer = fireRate + aimDuration;
+            fireTimer = fireDelay + aimDuration;
         }
     }
 
@@ -126,44 +126,21 @@ public class Drone : MonoBehaviour
             GameObject sightObj = Instantiate(
                 laserSightPrefab,
                 firePoint.position,
-                Quaternion.identity,
-                transform
+                Quaternion.identity
             );
+
             currentSight = sightObj.GetComponent<LineRenderer>();
+            currentSight.useWorldSpace = true;
+
+            sightObj.transform.SetParent(null); //unparent the laser
         }
 
-        // Save rotation before aiming
         Quaternion originalRotation = transform.rotation;
-
-        // Flip instantly
         Quaternion flippedRotation = originalRotation * Quaternion.Euler(0, 180f, 0);
         transform.rotation = flippedRotation;
 
-        // Lock aim
-        Vector3 aimTarget = player.position + Vector3.up * -0.2f;
-        lockedAimDirection = (aimTarget - firePoint.position).normalized;
-
-        float beamLength = detectionRange;
-        float extraDistance = 5f;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(firePoint.position, lockedAimDirection, out hit, beamLength))
-        {
-            lockedBeamEnd = hit.point;
-        }
-        else
-        {
-            lockedBeamEnd = firePoint.position + lockedAimDirection * beamLength;
-        }
-
-        // Overshoot if player is closer than full beam length
-        float distToPlayer = Vector3.Distance(firePoint.position, player.position);
-        if (distToPlayer + extraDistance < beamLength)
-        {
-            lockedBeamEnd =
-                firePoint.position + lockedAimDirection * (distToPlayer + extraDistance);
-        }
+        // *** LOCK THE PLAYER'S POSITION AT START OF AIM ***
+        lockedPlayerPosition = player.position + Vector3.up * -0.2f;
 
         float timer = 0f;
 
@@ -171,24 +148,27 @@ public class Drone : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            // Draw the laser but DO NOT change direction — use locked data
             if (currentSight)
             {
+                // Start point moves with drone
                 currentSight.SetPosition(0, firePoint.position);
-                currentSight.SetPosition(1, lockedBeamEnd); // <-- Locked
+
+                // Recompute direction based on MOVING firePoint → LOCKED player position
+                Vector3 dynamicDir = (lockedPlayerPosition - firePoint.position).normalized;
+
+                // End point always lies PAST the locked player position
+                currentSight.SetPosition(1, lockedPlayerPosition + dynamicDir * laserOvershoot);
             }
 
             yield return null;
         }
 
-        // Remove laser sight
         if (currentSight)
         {
             Destroy(currentSight.gameObject);
             currentSight = null;
         }
 
-        // Restore normal rotation
         transform.rotation = originalRotation;
         isAiming = false;
 
@@ -200,8 +180,10 @@ public class Drone : MonoBehaviour
         if (!laserPrefab || !firePoint)
             return;
 
-        // Projectile rotation based on locked direction
-        Quaternion shotRotation = Quaternion.LookRotation(lockedAimDirection);
+        // Compute direction FROM firePoint to locked END POINT
+        Vector3 dir = (lockedPlayerPosition - firePoint.position).normalized;
+
+        Quaternion shotRotation = Quaternion.LookRotation(dir);
 
         GameObject laser = Instantiate(laserPrefab, firePoint.position, shotRotation);
 
