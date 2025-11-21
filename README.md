@@ -6,9 +6,6 @@ Twaish - 331188 Dan V. Nguyen
 
 Qraktor - 331850 Thomas E. Kastberg
 
-## Blog Posts
-- 
-
 ## Credits
 ### Scripts/Libraries
 - [EzySlice by DavidArayan](https://github.com/DavidArayan/ezy-slice)
@@ -25,6 +22,3 @@ Qraktor - 331850 Thomas E. Kastberg
 - [Futuristic Gun - Pulse Blaster by Slava Pogorelsky](https://uppbeat.io/sfx/futuristic-gun-pulse-blaster/4931/19131)
 - [Sci-fi Whoosh - Laser Sword](https://uppbeat.io/sfx/sci-fi-whoosh-laser-sword/163021/43919)
 - [Large Explosion by Sound Ideas](https://soundeffects.fandom.com/wiki/Sound_Ideas,_EXPLOSION_-_LARGE_EXPLOSION_13)
-
-## Todos
-- Make sword spin when certain distance away from player
