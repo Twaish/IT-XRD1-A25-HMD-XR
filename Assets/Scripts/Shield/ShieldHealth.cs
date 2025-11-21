@@ -8,8 +8,7 @@ public class ShieldHealth : MonoBehaviour
 
     [Header("Components")]
     public MeshRenderer shieldRenderer;
-    public Collider BigDeflectCollider;
-    public Collider SmallDeflectCollider;
+    public Collider shieldCollider;
 
     private int currentHealth;
     private bool isRecharging = false;
@@ -20,10 +19,8 @@ public class ShieldHealth : MonoBehaviour
         currentHealth = maxHealth;
         if (shieldRenderer == null)
             shieldRenderer = GetComponent<MeshRenderer>();
-        if (BigDeflectCollider == null)
-            BigDeflectCollider = GetComponent<Collider>();
-        if (SmallDeflectCollider == null)
-            SmallDeflectCollider = GetComponent<Collider>();
+        if (shieldCollider == null)
+            shieldCollider = GetComponent<Collider>();
 
         CacheChildColliders();
     }
@@ -61,12 +58,11 @@ public class ShieldHealth : MonoBehaviour
         isRecharging = true;
         currentHealth = 0;
         shieldRenderer.enabled = false;
-        BigDeflectCollider.enabled = false;
-        SmallDeflectCollider.enabled = false;
+        shieldCollider.enabled = false;
 
         foreach (Collider col in childColliders)
         {
-            if (col != BigDeflectCollider && col != SmallDeflectCollider)
+            if (col != shieldCollider)
             {
                 col.enabled = false;
             }
@@ -80,12 +76,11 @@ public class ShieldHealth : MonoBehaviour
         currentHealth = maxHealth;
         isRecharging = false;
         shieldRenderer.enabled = true;
-        BigDeflectCollider.enabled = true;
-        SmallDeflectCollider.enabled = true;
+        shieldCollider.enabled = true;
 
         foreach (Collider col in childColliders)
         {
-            if (col != BigDeflectCollider && col != SmallDeflectCollider)
+            if (col != shieldCollider)
             {
                 col.enabled = true;
             }
