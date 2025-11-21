@@ -18,7 +18,7 @@ public class PlayerScoreManager : MonoBehaviour
     [SerializeField] private int bigDeflectPoints = 5;
     [SerializeField] private int smallDeflectPoints = 5;
 
-    private float timerAccumulator = 0f;
+    private float lastTimeAwarded = 0f;
 
     private void Start()
     {
@@ -44,14 +44,12 @@ public class PlayerScoreManager : MonoBehaviour
         pointSystem.AddPoints(robotPoints);
     }
 
-    private void HandleTimerUpdate(float time)
+    private void HandleTimerUpdate(float currentTime)
     {
-        timerAccumulator += time;
-
-        if (timerAccumulator >= 0.5f)
+        if (currentTime - lastTimeAwarded >= 0.5f)
         {
             pointSystem.AddPoints(1);
-            timerAccumulator -= 0.5f;
+            lastTimeAwarded = currentTime;
         }
     }
 
