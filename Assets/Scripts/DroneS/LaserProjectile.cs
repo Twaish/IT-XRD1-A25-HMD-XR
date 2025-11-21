@@ -13,15 +13,14 @@ public class LaserProjectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.linearVelocity = transform.forward * speed;
         Destroy(gameObject, lifetime);
     }
 
     void Update()
     {
         if (!isDeflected)
-            transform.position += speed * Time.deltaTime * transform.forward;
+            rb.linearVelocity = rb.linearVelocity;
     }
 
     private void OnTriggerEnter(Collider other)

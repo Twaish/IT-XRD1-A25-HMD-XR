@@ -8,18 +8,23 @@ public class ShieldHealth : MonoBehaviour
 
     [Header("Components")]
     public MeshRenderer shieldRenderer;
-    public Collider shieldCollider;
-    
+    public Collider BigDeflectCollider;
+    public Collider SmallDeflectCollider;
+
     private int currentHealth;
     private bool isRecharging = false;
-    private Collider[] childColliders; 
+    private Collider[] childColliders;
 
     void Start()
     {
         currentHealth = maxHealth;
-        if (shieldRenderer == null) shieldRenderer = GetComponent<MeshRenderer>();
-        if (shieldCollider == null) shieldCollider = GetComponent<Collider>();
-        
+        if (shieldRenderer == null)
+            shieldRenderer = GetComponent<MeshRenderer>();
+        if (BigDeflectCollider == null)
+            BigDeflectCollider = GetComponent<Collider>();
+        if (SmallDeflectCollider == null)
+            SmallDeflectCollider = GetComponent<Collider>();
+
         CacheChildColliders();
     }
 
@@ -36,12 +41,13 @@ public class ShieldHealth : MonoBehaviour
     private void DestroyNearestLaser()
     {
         GameObject[] lasers = GameObject.FindGameObjectsWithTag("Laser");
-        if (lasers.Length == 0) return;
-        
+        if (lasers.Length == 0)
+            return;
+
         GameObject nearest = null;
         float nearestDist = Mathf.Infinity;
         Vector3 shieldPos = transform.position;
-        
+
         foreach (GameObject laser in lasers)
         {
             float dist = Vector3.Distance(shieldPos, laser.transform.position);
@@ -51,7 +57,7 @@ public class ShieldHealth : MonoBehaviour
                 nearest = laser;
             }
         }
-        
+
         if (nearest != null)
         {
             Destroy(nearest);
@@ -60,7 +66,8 @@ public class ShieldHealth : MonoBehaviour
 
     public void TakeHit(int damage = 1)
     {
-        if (isRecharging) return;
+        if (isRecharging)
+            return;
         currentHealth -= damage;
         Debug.LogWarning("Shield took hit. Remaining: " + currentHealth);
         if (currentHealth <= 0)
@@ -71,7 +78,7 @@ public class ShieldHealth : MonoBehaviour
 
     private void CacheChildColliders()
     {
-        childColliders = GetComponentsInChildren<Collider>(true); 
+        childColliders = GetComponentsInChildren<Collider>(true);
     }
 
     private void BreakShield()
@@ -80,16 +87,17 @@ public class ShieldHealth : MonoBehaviour
         isRecharging = true;
         currentHealth = 0;
         shieldRenderer.enabled = false;
-        shieldCollider.enabled = false;
-        
+        BigDeflectCollider.enabled = false;
+        SmallDeflectCollider.enabled = false;
+
         foreach (Collider col in childColliders)
         {
-            if (col != shieldCollider)
+            if (col != BigDeflectCollider && col != SmallDeflectCollider)
             {
                 col.enabled = false;
             }
         }
-        
+
         Invoke(nameof(RechargeShield), rechargeTime);
     }
 
@@ -98,16 +106,17 @@ public class ShieldHealth : MonoBehaviour
         currentHealth = maxHealth;
         isRecharging = false;
         shieldRenderer.enabled = true;
-        shieldCollider.enabled = true;
-        
+        BigDeflectCollider.enabled = true;
+        SmallDeflectCollider.enabled = true;
+
         foreach (Collider col in childColliders)
         {
-            if (col != shieldCollider)
+            if (col != BigDeflectCollider && col != SmallDeflectCollider)
             {
                 col.enabled = true;
             }
         }
-        
+
         Debug.Log("Shield Recharged");
     }
 }
