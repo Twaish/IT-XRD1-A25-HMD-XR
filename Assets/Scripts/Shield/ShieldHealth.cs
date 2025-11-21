@@ -38,32 +38,6 @@ public class ShieldHealth : MonoBehaviour
         }
     }
 
-    private void DestroyNearestLaser()
-    {
-        GameObject[] lasers = GameObject.FindGameObjectsWithTag("Laser");
-        if (lasers.Length == 0)
-            return;
-
-        GameObject nearest = null;
-        float nearestDist = Mathf.Infinity;
-        Vector3 shieldPos = transform.position;
-
-        foreach (GameObject laser in lasers)
-        {
-            float dist = Vector3.Distance(shieldPos, laser.transform.position);
-            if (dist < nearestDist)
-            {
-                nearestDist = dist;
-                nearest = laser;
-            }
-        }
-
-        if (nearest != null)
-        {
-            Destroy(nearest);
-        }
-    }
-
     public void TakeHit(int damage = 1)
     {
         if (isRecharging)
