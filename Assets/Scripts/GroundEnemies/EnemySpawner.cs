@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>();
     private int currentSpawnLimit;
+    
+    public event Action<Enemies> OnEnemyDeath;
 
     void Start()
     {
@@ -65,9 +69,11 @@ public class EnemySpawner : MonoBehaviour
                     rotation = Quaternion.Euler(0f, randomY, 0f);
                 }
 
-                GameObject enemy = Instantiate(enemyPrefab, pos, rotation);
-                enemy.GetComponent<Enemies>().player = player;
-                activeEnemies.Add(enemy);
+                GameObject enemyGO = Instantiate(enemyPrefab, pos, rotation);
+                Enemies enemy = enemyGO.GetComponent<Enemies>();
+                enemy.player = player;
+                enemy.OnDeath += HandleEnemyDeath;
+                activeEnemies.Add(enemyGO);
             }
 
             float delay = Random.Range(minSpawnDelay, maxSpawnDelay) + fixedSpawnDelay;
@@ -83,6 +89,12 @@ public class EnemySpawner : MonoBehaviour
             currentSpawnLimit += increaseAmount;
             Debug.Log("New spawn limit: " + currentSpawnLimit);
         }
+    }
+
+    private void HandleEnemyDeath(Enemies enemy)
+    {
+        enemy.OnDeath -= HandleEnemyDeath;
+        OnEnemyDeath?.Invoke(enemy);
     }
 }
 
