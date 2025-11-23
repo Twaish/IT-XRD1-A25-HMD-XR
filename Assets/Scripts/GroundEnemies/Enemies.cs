@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Enemies : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Enemies : MonoBehaviour
     private bool isCommittedToSwing = false;
     private bool isStunned = false;
     private Coroutine currentMotion;
+
+    public event Action<Enemies> OnDeath;
 
     private UnityEngine.AI.NavMeshAgent agent;
 
@@ -205,6 +208,13 @@ public class Enemies : MonoBehaviour
             agent.isStopped = true;
             agent.ResetPath();
         }
+    }
+
+    public void Die()
+    {
+        StopAllCoroutines();
+        OnDeath?.Invoke(this);
+        Destroy(gameObject);
     }
 
     /*
