@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefab: {fileID: 1358988674617034553, guid: e722f5eabadab3f4ca01b424d060e06a, type: 3}
   initialSpawnLimit: 5
-  spawnArea: {x: 20, y: 1, z: 20}
+  spawnArea: {x: 15, y: 1, z: 15}
   player: {fileID: 2124941156}
   spawnOrientation: 1
   minSpawnDelay: 0.5
