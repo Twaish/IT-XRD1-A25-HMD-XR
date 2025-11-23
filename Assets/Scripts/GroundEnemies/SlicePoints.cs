@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BladeSlicer))]
-public class RobotSlicePoints : MonoBehaviour
+public class SlicePoints : MonoBehaviour
 {
     private BladeSlicer bladeSlicer;
 
@@ -13,9 +13,14 @@ public class RobotSlicePoints : MonoBehaviour
 
     private void HandleSlice(GameObject target, Vector3 _)
     {
+        // Janky but works
         if (target.TryGetComponent(out Enemies enemy))
         {
             enemy.Die();
+        }
+        else if (target.TryGetComponent(out Drone drone))
+        {
+            drone.Die();
         }
     }
 }
