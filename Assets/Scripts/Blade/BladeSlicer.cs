@@ -53,6 +53,7 @@ public class BladeSlicer : MonoBehaviour
   {
     Rigidbody rigidbody = hull.AddComponent<Rigidbody>();
     MeshCollider collider = hull.AddComponent<MeshCollider>();
+    hull.AddComponent<SelfDestruct>();
     collider.convex = true;
     rigidbody.AddExplosionForce(cutForce, hull.transform.position, 1);
     
