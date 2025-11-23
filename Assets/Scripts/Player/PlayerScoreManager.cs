@@ -23,15 +23,12 @@ public class PlayerScoreManager : MonoBehaviour
     private void Start()
     {
         droneSpawner.OnDroneDeath += HandleDroneDeath;
-        // TODO: Implement OnDeath event for robots
-        // robotSpawner.OnRobotDeath += HandleRobotDeath;
+        robotSpawner.OnRobotDeath += HandleRobotDeath;
         
         timerManager.OnTimerUpdated += HandleTimerUpdate;
 
         bigDeflectArea.OnDeflect += HandleBigDeflect;
         smallDeflectArea.OnDeflect += HandleSmallDeflect;
-        
-
     }
 
     private void HandleDroneDeath(Drone drone)
