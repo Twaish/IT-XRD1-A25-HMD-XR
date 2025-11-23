@@ -250,7 +250,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1049377852}
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
 --- !u!1 &63217636
 GameObject:
@@ -845,6 +848,10 @@ PrefabInstance:
       propertyPath: droneSpawner
       value: 
       objectReference: {fileID: 303784554}
+    - target: {fileID: 3253354896325998391, guid: 6cf3a7ab05855f245b86b4615ea119dd, type: 3}
+      propertyPath: robotSpawner
+      value: 
+      objectReference: {fileID: 63217637}
     - target: {fileID: 3253354896325998391, guid: 6cf3a7ab05855f245b86b4615ea119dd, type: 3}
       propertyPath: timerManager
       value: 
@@ -1531,6 +1538,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4519678567853810, guid: e20b8b783289f644684f9e94fddbd56f, type: 3}
   m_PrefabInstance: {fileID: 963809227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1049377844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 45684182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1049377852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049377844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac07287abec7a42b25c1f5b9d492ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotSlicePoints
 --- !u!1001 &1103706973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1948,7 +1972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1852649974548922, guid: 1e4f0d9e7dbf221419b0bd0e1286aa16, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1943188637351600, guid: 1e4f0d9e7dbf221419b0bd0e1286aa16, type: 3}
       propertyPath: m_Layer
