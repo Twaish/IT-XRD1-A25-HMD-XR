@@ -22,3 +22,10 @@ Qraktor - 331850 Thomas E. Kastberg
 - [Futuristic Gun - Pulse Blaster by Slava Pogorelsky](https://uppbeat.io/sfx/futuristic-gun-pulse-blaster/4931/19131)
 - [Sci-fi Whoosh - Laser Sword](https://uppbeat.io/sfx/sci-fi-whoosh-laser-sword/163021/43919)
 - [Large Explosion by Sound Ideas](https://soundeffects.fandom.com/wiki/Sound_Ideas,_EXPLOSION_-_LARGE_EXPLOSION_13)
+
+### Textures
+- [Hexagonal Tiles](https://www.cgbookcase.com/textures/white-hexagonal-tiles-01)
+
+### Models
+External models used not explicitly inside the AssetStore folder
+- [Drone Guard by Lukas Bobor](https://assetstore.unity.com/packages/3d/characters/robots/drone-guard-175607)
