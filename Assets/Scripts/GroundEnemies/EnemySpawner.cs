@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> activeEnemies = new List<GameObject>();
     private int currentSpawnLimit;
     
-    public event Action<Enemies> OnEnemyDeath;
+    public event Action<Enemies> OnRobotDeath;
 
     void Start()
     {
@@ -94,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
     private void HandleEnemyDeath(Enemies enemy)
     {
         enemy.OnDeath -= HandleEnemyDeath;
-        OnEnemyDeath?.Invoke(enemy);
+        OnRobotDeath?.Invoke(enemy);
     }
 }
 
