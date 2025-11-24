@@ -55,6 +55,6 @@ public class PlayerDamageReceiver : MonoBehaviour
 
     void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        SceneManager.LoadScene("GameScene");
+        Application.Quit();
     }
 }
