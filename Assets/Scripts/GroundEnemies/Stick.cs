@@ -23,13 +23,14 @@ public class Stick : MonoBehaviour
 
         if (other.CompareTag("Saber"))
         {
-            Debug.Log("Sword hit detected — applying stun!", this);
+            Debug.Log("Saber hit detected — applying stun!", this);
 
             // Find the enemy (assumed to be parent or same GameObject)
             Enemies enemy = GetComponentInParent<Enemies>();
             if (enemy != null)
             {
                 enemy.ApplyStun(stunDuration); // tweak duration as needed
+                Debug.Log("The enemy has been stunned. This mean there has been a colission with the player saber and the enemy sword");
             }
             else
             {

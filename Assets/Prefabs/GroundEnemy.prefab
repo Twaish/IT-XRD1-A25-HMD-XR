@@ -352,7 +352,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.75, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1031100679261182698}
@@ -498,19 +498,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f3f502b21ea5341a1be4ed17f3f3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies
-  speed: 0.8
-  distanceToStop: 2
+  speed: 0.9
+  distanceToStop: 1.3
   detectionRange: 25
   stick: {fileID: 8376935839316493475}
   stickHitbox: {fileID: 9121967201866423282}
-  swingCooldown: 0.5
-  swingDownTime: 0.15
-  swingUpTime: 0.15
-  pauseAfterHit: 0.1
+  swingCooldown: 2
+  swingDownTime: 0.5
+  swingUpTime: 0.5
+  pauseAfterHit: 0.25
   player: {fileID: 0}
   defaultEyeMaterial: {fileID: 2100000, guid: 028ce27d0f16b0f4a96ef8a1591e0dae, type: 2}
   stunnedEyeMaterial: {fileID: 2100000, guid: 8c9dd93430df785468d40013185a0fa1, type: 2}
-  swordRecoveryTime: 0.2
+  swordRecoveryTime: 0.5
 --- !u!195 &939220395008114342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ GameObject:
   - component: {fileID: 7113122504596377798}
   - component: {fileID: 9121967201866423282}
   - component: {fileID: 6195141032397418091}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Blade
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -1607,7 +1607,7 @@ GameObject:
   - component: {fileID: 8460586676968381081}
   - component: {fileID: 8154310558909507937}
   - component: {fileID: 6457467121322549018}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -1747,7 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072e33e07eeb75e4ca9bf9838f0782e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stick
-  stunDuration: 8
+  stunDuration: 4
 --- !u!1 &6524982223949013047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,7 +1875,7 @@ GameObject:
   - component: {fileID: 501628299658883311}
   m_Layer: 6
   m_Name: StickPiviot
-  m_TagString: Sword
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1904,12 +1904,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6615802969108545457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072e33e07eeb75e4ca9bf9838f0782e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stick
-  stunDuration: 8
+  stunDuration: 4
 --- !u!54 &8028627803563506913
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1954,7 +1954,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.05
   m_Height: 1.35
