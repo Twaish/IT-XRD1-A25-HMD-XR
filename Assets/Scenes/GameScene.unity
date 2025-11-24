@@ -247,6 +247,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7591699981681846697, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 76214435}
+    - target: {fileID: 7591699981681846697, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: rightHandInteractor
+      value: 
+      objectReference: {fileID: 740798918}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -309,6 +317,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &76214435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 740798912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &180949278
 MonoBehaviour:
   m_ObjectHideFlags: 0
