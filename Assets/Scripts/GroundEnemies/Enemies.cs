@@ -26,6 +26,13 @@ public class Enemies : MonoBehaviour
     public event Action<Enemies> OnDeath;
 
     private UnityEngine.AI.NavMeshAgent agent;
+    
+
+public Material defaultEyeMaterial;
+public Material stunnedEyeMaterial;
+
+private MeshRenderer reyeRenderer;
+private MeshRenderer leyeRenderer;
 
     void Start()
     {
@@ -54,6 +61,17 @@ public class Enemies : MonoBehaviour
             enabled = false;
             return;
         }
+
+        reyeRenderer = transform.Find("REye")?.GetComponent<MeshRenderer>();
+        leyeRenderer = transform.Find("LEye")?.GetComponent<MeshRenderer>();
+
+        if (reyeRenderer == null || leyeRenderer == null)
+        {
+            Debug.LogWarning("One or both eye renderers (REye/LEye) missing on enemy.");
+        }
+
+        // Ensure initial state matches isStunned
+        UpdateEyeMaterials();
     }
 
     void Update()
@@ -78,18 +96,20 @@ public class Enemies : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 8f);
             }
 
-            float minSafe = distanceToStop * 0.7f;
-            if (distanceToPlayer > distanceToStop)
+            float minSafe = distanceToStop * 0.7f; //minSafe before going back
+            if (distanceToPlayer > distanceToStop + 0.1f)
             {
                 //transform.position += dirToPlayer.normalized * speed * Time.deltaTime;
-                timeSinceLastSwing = Mathf.Max(0, swingCooldown / 3);
+                timeSinceLastSwing = -Mathf.Max(0, swingCooldown / 3);
+                //StartCoroutine(SwingOnce());
+
             }
             else if (distanceToPlayer < minSafe && !isCommittedToSwing)
             {
                 transform.position -= dirToPlayer.normalized * speed * Time.deltaTime * 0.8f;
-                timeSinceLastSwing = swingCooldown / 3;
+                //timeSinceLastSwing = -(swingCooldown / 3);
             }
-            else if (!isStunned) 
+            if (!isStunned) 
             {
                 timeSinceLastSwing += Time.deltaTime; 
 
@@ -132,7 +152,7 @@ public class Enemies : MonoBehaviour
         yield return SmoothRotateTo(windup, 0.15f);
 
         // Swing down
-        Quaternion hit = Quaternion.Euler(72, 0, 10);
+        Quaternion hit = Quaternion.Euler(75, 0, 15);
         yield return SmoothRotateTo(hit, swingDownTime);
 
         // Hit phase
@@ -156,6 +176,10 @@ public class Enemies : MonoBehaviour
     public void ApplyStun(float stunDuration = 0.5f)
     {
         Debug.Log("Stunned");
+
+        isStunned = true;               // ✅ Set here
+        UpdateEyeMaterials();           // ✅ Apply visual feedback immediately
+
         timeSinceLastSwing = -stunDuration;
 
         isCommittedToSwing = false;
@@ -170,10 +194,20 @@ public class Enemies : MonoBehaviour
         StartCoroutine(ResumeAfterStun(stunDuration));
     }
 
+    private void UpdateEyeMaterials()
+{
+    Material targetMat = isStunned ? stunnedEyeMaterial : defaultEyeMaterial;
+    
+    // Use sharedMaterial if you don’t need per-instance overrides (performance +)
+    if (reyeRenderer != null) reyeRenderer.sharedMaterial = targetMat;
+    if (leyeRenderer != null) leyeRenderer.sharedMaterial = targetMat;
+}
+
     IEnumerator ResumeAfterStun(float duration)
     {
         yield return new WaitForSeconds(duration);
         isStunned = false;
+        UpdateEyeMaterials();           // ✅ Revert visuals
         if (agent != null) agent.isStopped = false;
     }
 

@@ -42,6 +42,9 @@ public class Drone : MonoBehaviour
     public event Action<Drone> OnDeath;
     public event Action OnFire;
 
+    [Header("Line of Sight")]
+    public LayerMask wallMask;
+
     private bool isAiming = false;
     private Vector3 lockedBeamEnd;
     private Vector3 lockedPlayerPosition;
@@ -111,6 +114,15 @@ public class Drone : MonoBehaviour
             && fireTimer <= 0f
         )
         {
+            Vector3 toPlayer = player.position - firePoint.position;
+            float distToPlayer = toPlayer.magnitude;
+
+            // If a wall blocks the line of sight → cancel the attack
+            if (Physics.Raycast(firePoint.position, toPlayer.normalized, distToPlayer, wallMask))
+            {
+                return;
+            }
+
             StartCoroutine(AimAndFire());
             fireTimer = fireDelay + aimDuration;
         }

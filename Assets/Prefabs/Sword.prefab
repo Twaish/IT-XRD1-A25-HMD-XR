@@ -1182,9 +1182,11 @@ GameObject:
   - component: {fileID: 6145713404454594031}
   - component: {fileID: 6755272784880351004}
   - component: {fileID: 3538593521665000249}
+  - component: {fileID: 6350800981133337658}
+  - component: {fileID: 348625744512733738}
   m_Layer: 0
   m_Name: Blade
-  m_TagString: Untagged
+  m_TagString: Saber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1339,6 +1341,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7e0632d9655044a9ff3013a304ffa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliceSfxPlayer
+--- !u!136 &6350800981133337658
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139469200289765530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 2.06
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &348625744512733738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139469200289765530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac07287abec7a42b25c1f5b9d492ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotSlicePoints
 --- !u!1 &3145245622442630058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,6 +2454,9 @@ GameObject:
   - component: {fileID: 607166910909723563}
   - component: {fileID: 3150284259679879599}
   - component: {fileID: 6322428077488620516}
+  - component: {fileID: 7591699981681846697}
+  - component: {fileID: -8956601912966794336}
+  - component: {fileID: -764817712774018770}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Saber
@@ -2544,10 +2584,10 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
-  m_SnapToColliderVolume: 1
+  m_SnapToColliderVolume: 0
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 1
@@ -2616,6 +2656,66 @@ MonoBehaviour:
     isSpatial: 1
     delay: 0
   initialPoolSize: 5
+--- !u!114 &7591699981681846697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805321980195045753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223d07890534c4a288980756333eb0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaberRecall
+  rightHand: {fileID: 0}
+  rightHandInteractor: {fileID: 0}
+  recallAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Recall
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 1c59f22c-9a9e-4fd6-8107-22289f8ba981
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 1
+    m_Reference: {fileID: 7529527513442227070, guid: 35a7f12f9e0c24ae185cff47b10976b9, type: 3}
+  recallForce: 40
+  rotateSpeed: 10
+  grabDistance: 0.25
+--- !u!114 &-8956601912966794336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805321980195045753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dedf96f9fd6c49c6ad28f38d21b381e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlightHomingThrow
+  enemyTag: Drone
+  homingStrength: 0.201
+  targetSearchRadius: 100
+  homingDuration: 25
+  rotateTowardsVelocity: 1
+  spinSpeed: 720
+  acceleration: 5
+--- !u!114 &-764817712774018770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805321980195045753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac346a3958352410eb50810592594afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HomingThrowActivator
 --- !u!1 &5210088064613941892
 GameObject:
   m_ObjectHideFlags: 0

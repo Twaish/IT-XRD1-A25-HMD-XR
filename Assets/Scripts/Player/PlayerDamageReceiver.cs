@@ -53,8 +53,8 @@ public class PlayerDamageReceiver : MonoBehaviour
         SceneManager.LoadScene("Insane Asylum");
     }
 
-    private void OnResetPressed(InputAction.CallbackContext ctx)
+    void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("GameScene");
     }
 }
