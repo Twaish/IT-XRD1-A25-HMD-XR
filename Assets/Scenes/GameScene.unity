@@ -1378,6 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4a672b42b9f4794b305a783384105d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersistentRig
+  TimeOfCreation: 0
 --- !u!114 &740798918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthUIController
   healthSystem: {fileID: 740798920}
-  healthText: {fileID: 0}
+  healthText: {fileID: 5191226051549353410}
 --- !u!1001 &787699755
 PrefabInstance:
   m_ObjectHideFlags: 0
