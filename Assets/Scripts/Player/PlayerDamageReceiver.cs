@@ -55,6 +55,6 @@ public class PlayerDamageReceiver : MonoBehaviour
 
     private void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        SceneManager.LoadScene("Drones", LoadSceneMode.Single);
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 }
