@@ -11,6 +11,7 @@ TagManager:
   - Saber
   - Drone
   - Enemy
+  - Stun
   layers:
   - Default
   - TransparentFX

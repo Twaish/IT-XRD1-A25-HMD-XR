@@ -21,7 +21,7 @@ public class Stick : MonoBehaviour
     {
         Debug.Log("COLLISION DETECTED! Hit: " + other.name + " with tag: " + other.tag, this);
 
-        if (other.CompareTag("Saber"))
+        if (other.CompareTag("Stun"))
         {
             Debug.Log("Saber hit detected — applying stun!", this);
 
