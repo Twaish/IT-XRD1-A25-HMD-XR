@@ -2,39 +2,53 @@ using UnityEngine;
 
 public class Stick : MonoBehaviour
 {
-
     public float stunDuration = 8f;
 
     void Start()
     {
-        // Make sure we have a trigger collider
+        // Ensure we have a Collider (non-trigger)
         Collider col = GetComponent<Collider>();
         if (col == null)
         {
-            col = gameObject.AddComponent<BoxCollider>(); // Add collider if missing
+            col = gameObject.AddComponent<BoxCollider>();
         }
-        col.isTrigger = true; // Make sure it's a trigger
-        Debug.Log("Stick collider setup complete", this);
+        col.isTrigger = false; // ← Critical: NOT a trigger
+
+        // Ensure we have a Rigidbody (non-kinematic, unless other side has dynamic RB)
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = false; // ← Must be false for collision *if the other object is kinematic*
+            rb.useGravity = false;
+            rb.mass = 1f;
+        }
+        // Optional: freeze rotation/position if it's just a sword swing detector
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+
+        Debug.Log("Stick setup: Collider (non-trigger) + Rigidbody added", this);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
+        Collider other = collision.collider;
         Debug.Log("COLLISION DETECTED! Hit: " + other.name + " with tag: " + other.tag, this);
 
-        if (other.CompareTag("Stun"))
+        // Check tag + name condition (add parentheses for correct logic!)
+        if ((other.CompareTag("Saber") && other.name == "Blade") || other.CompareTag("Stun"))
         {
-            Debug.Log("Saber hit detected — applying stun!", this);
+            Debug.Log("Saber/Stun hit detected — applying stun!", this);
 
-            // Find the enemy (assumed to be parent or same GameObject)
-            Enemies enemy = GetComponentInParent<Enemies>();
+            // Find enemy (parent or self)
+            Enemies enemy = GetComponentInParent<Enemies>() ?? GetComponent<Enemies>();
             if (enemy != null)
             {
-                enemy.ApplyStun(stunDuration); // tweak duration as needed
-                Debug.Log("The enemy has been stunned. This mean there has been a colission with the player saber and the enemy sword");
+                enemy.ApplyStun(stunDuration);
+                Debug.Log("Enemy stunned via physical collision with player saber.", this);
             }
             else
             {
-                Debug.LogWarning("No Enemies component found on parent!", this);
+                Debug.LogWarning("No Enemies component found in hierarchy!", this);
             }
         }
     }

@@ -438,7 +438,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -504,13 +504,13 @@ MonoBehaviour:
   stick: {fileID: 8376935839316493475}
   stickHitbox: {fileID: 9121967201866423282}
   swingCooldown: 0.5
-  swingDownTime: 0.25
-  swingUpTime: 0.25
-  pauseAfterHit: 0.125
+  swingDownTime: 0.4
+  swingUpTime: 0.4
+  pauseAfterHit: 0.2
   player: {fileID: 0}
   defaultEyeMaterial: {fileID: 2100000, guid: 028ce27d0f16b0f4a96ef8a1591e0dae, type: 2}
   stunnedEyeMaterial: {fileID: 2100000, guid: 8c9dd93430df785468d40013185a0fa1, type: 2}
-  swordRecoveryTime: 0.25
+  swordRecoveryTime: 0.4
 --- !u!195 &939220395008114342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ GameObject:
   - component: {fileID: 7113122504596377798}
   - component: {fileID: 9121967201866423282}
   - component: {fileID: 6195141032397418091}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Blade
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -1546,7 +1546,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1567,16 +1567,16 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.57
+  m_Radius: 0.65
   m_Height: 2.05
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -1727,9 +1727,9 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506813705811428519}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072e33e07eeb75e4ca9bf9838f0782e9, type: 3}
   m_Name: 

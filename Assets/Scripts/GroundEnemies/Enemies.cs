@@ -53,7 +53,7 @@ private MeshRenderer leyeRenderer;
             originalStickRotation = stick.localRotation;
 
         if (stickHitbox != null)
-            stickHitbox.enabled = false;
+        //    stickHitbox.enabled = false;
 
         if (player == null)
         {
@@ -156,9 +156,9 @@ private MeshRenderer leyeRenderer;
         yield return SmoothRotateTo(hit, swingDownTime);
 
         // Hit phase
-        if (stickHitbox != null) stickHitbox.enabled = true;
+    //    if (stickHitbox != null) stickHitbox.enabled = true;
         yield return new WaitForSeconds(pauseAfterHit);
-        if (stickHitbox != null) stickHitbox.enabled = false;
+    //    if (stickHitbox != null) stickHitbox.enabled = false;
 
         // Recovery — only if not stunned *during* hit pause
         if (currentMotion != null) StopCoroutine(currentMotion);
@@ -183,7 +183,7 @@ private MeshRenderer leyeRenderer;
         timeSinceLastSwing = -stunDuration;
 
         isCommittedToSwing = false;
-        if (stickHitbox != null) stickHitbox.enabled = false;
+    //    if (stickHitbox != null) stickHitbox.enabled = false;
 
         if (stick != null)
         {
@@ -208,7 +208,7 @@ private MeshRenderer leyeRenderer;
         yield return new WaitForSeconds(duration);
         isStunned = false;
         UpdateEyeMaterials();           // ✅ Revert visuals
-        if (agent != null) agent.isStopped = false;
+    //    if (agent != null) agent.isStopped = false;
     }
 
     private IEnumerator SmoothStickRecovery(float duration)
@@ -233,7 +233,7 @@ private MeshRenderer leyeRenderer;
         isStunned = false;
         timeSinceLastSwing = 0;
         currentMotion = null;
-        if (stickHitbox != null) stickHitbox.enabled = false;
+        //if (stickHitbox != null) stickHitbox.enabled = false;
         if (stick != null) stick.localRotation = originalStickRotation;
 
         // Also stop NavMesh movement

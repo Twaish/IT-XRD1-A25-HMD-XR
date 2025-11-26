@@ -199,21 +199,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8956601912966794336, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -764817712774018770, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 348625744512733738, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 607166910909723563, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538593521665000249, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 4805321980195045753, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_TagString
-      value: Stun
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909409352179197895, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909409352179197895, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881632219038694015, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145713404454594031, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322428077488620516, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6350800981133337658, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_Height
-      value: 2.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6350800981133337658, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_Radius
-      value: 0.75
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350800981133337658, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350800981133337658, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755272784880351004, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7209245726273454000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,6 +312,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7591699981681846697, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591699981681846697, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 76214435}
@@ -263,10 +323,17 @@ PrefabInstance:
       propertyPath: rightHandInteractor
       value: 
       objectReference: {fileID: 740798918}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6350800981133337658, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1554778338}
+    - targetCorrespondingSourceObject: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1554778339}
   m_SourcePrefab: {fileID: 100100000, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
 --- !u!1 &63217636
 GameObject:
@@ -716,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &303784554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,9 +2213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e66b7ab9c4a3c4095d044a65b77053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
-  health: 100
+  health: 100000
   minHealth: 0
-  maxHealth: 100
+  maxHealth: 100000
 --- !u!114 &740798921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4011,6 +4078,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4519678567853810, guid: e20b8b783289f644684f9e94fddbd56f, type: 3}
   m_PrefabInstance: {fileID: 1553048576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1554778327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3139469200289765530, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+  m_PrefabInstance: {fileID: 45684182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1554778338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554778327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1bc595af4139e479b5e270d5655658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stick1
+  stunDuration: 4
+--- !u!136 &1554778339
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554778327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 2.2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1680906810
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,6 +4321,10 @@ PrefabInstance:
     - target: {fileID: 9142977029754784180, guid: fd8f550b85193410683e4168b9695461, type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142977029754784180, guid: fd8f550b85193410683e4168b9695461, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
