@@ -503,7 +503,7 @@ MonoBehaviour:
   detectionRange: 25
   stick: {fileID: 8376935839316493475}
   stickHitbox: {fileID: 9121967201866423282}
-  swingCooldown: 0.5
+  swingCooldown: 1
   swingDownTime: 0.4
   swingUpTime: 0.4
   pauseAfterHit: 0.2
@@ -1549,7 +1549,7 @@ Rigidbody:
     m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1073745919
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

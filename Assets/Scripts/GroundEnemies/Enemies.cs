@@ -162,36 +162,43 @@ private MeshRenderer leyeRenderer;
 
         // Recovery — only if not stunned *during* hit pause
         if (currentMotion != null) StopCoroutine(currentMotion);
+            StopAllCoroutines();
             currentMotion = StartCoroutine(SmoothStickRecovery(swordRecoveryTime));
         
         isCommittedToSwing = false;
-        if (!isStunned)
-        {
-            yield return SmoothRotateTo(originalStickRotation, swingUpTime);
-        }
+        //if (!isStunned)
+        //{
+        //    yield return SmoothRotateTo(originalStickRotation, swingUpTime);
+        //}
     }
 
     [SerializeField] private float swordRecoveryTime = 0.3f;
 
     public void ApplyStun(float stunDuration = 0.5f)
     {
-        Debug.Log("Stunned");
-
-        isStunned = true;               // ✅ Set here
-        UpdateEyeMaterials();           // ✅ Apply visual feedback immediately
-
-        timeSinceLastSwing = -stunDuration;
-
-        isCommittedToSwing = false;
-    //    if (stickHitbox != null) stickHitbox.enabled = false;
-
-        if (stick != null)
+        if(isCommittedToSwing)
         {
-            if (currentMotion != null) StopCoroutine(currentMotion);
-            currentMotion = StartCoroutine(SmoothStickRecovery(swordRecoveryTime));
-        }
+            Debug.Log("Stunned");
 
-        StartCoroutine(ResumeAfterStun(stunDuration));
+            isStunned = true;               
+            UpdateEyeMaterials();           
+
+            //one could add this to increes the cooldown after they are no longer stunned like a recovery from confusion effect?
+            //Will effect after cooldown for after the visual stunn is over.
+            //timeSinceLastSwing = -stunDuration/2;
+
+            isCommittedToSwing = false;
+            //if (stickHitbox != null) stickHitbox.enabled = false;
+
+            if (stick != null)
+            {
+                if (currentMotion != null) StopCoroutine(currentMotion);
+                StopAllCoroutines();
+                currentMotion = StartCoroutine(SmoothStickRecovery(swordRecoveryTime));
+            }
+
+            StartCoroutine(ResumeAfterStun(stunDuration));
+        }
     }
 
     private void UpdateEyeMaterials()
@@ -205,9 +212,11 @@ private MeshRenderer leyeRenderer;
 
     IEnumerator ResumeAfterStun(float duration)
     {
+        Debug.Log("I am stunned for "+ duration +" help me I want it to be over it feels like all my feelings are shut down and I am enclosed in darkness");
         yield return new WaitForSeconds(duration);
+        Debug.Log("finally the stunned stunning stun is over this is way better back to it");
         isStunned = false;
-        UpdateEyeMaterials();           // ✅ Revert visuals
+        UpdateEyeMaterials();
     //    if (agent != null) agent.isStopped = false;
     }
 
@@ -230,7 +239,7 @@ private MeshRenderer leyeRenderer;
     {
         StopAllCoroutines();
         isCommittedToSwing = false;
-        isStunned = false;
+        //isStunned = false;
         timeSinceLastSwing = 0;
         currentMotion = null;
         //if (stickHitbox != null) stickHitbox.enabled = false;
