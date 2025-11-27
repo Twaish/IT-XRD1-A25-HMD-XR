@@ -376,9 +376,9 @@ MonoBehaviour:
   spawnArea: {x: 15, y: 1, z: 15}
   player: {fileID: 2124941156}
   spawnOrientation: 1
-  minSpawnDelay: 0.5
-  maxSpawnDelay: 3
-  fixedSpawnDelay: 5
+  minSpawnDelay: 1
+  maxSpawnDelay: 6
+  fixedSpawnDelay: 6
   increaseInterval: 10
   increaseAmount: 1
 --- !u!4 &63217638
@@ -815,9 +815,9 @@ MonoBehaviour:
   initialSpawnLimit: 3
   spawnArea: {x: 9, y: 1.25, z: 9}
   player: {fileID: 2124941156}
-  minSpawnDelay: 0.5
-  maxSpawnDelay: 3
-  fixedSpawnDelay: 5
+  minSpawnDelay: 1
+  maxSpawnDelay: 6
+  fixedSpawnDelay: 6
   increaseInterval: 10
   increaseAmount: 1
 --- !u!4 &303784555
