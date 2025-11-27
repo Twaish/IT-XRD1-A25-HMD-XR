@@ -203,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8956601912966794336, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
+      propertyPath: homingStrength
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -764817712774018770, guid: 103d057ec92c9564abd77eaa4cc5bc85, type: 3}
       propertyPath: m_Enabled
       value: 1
