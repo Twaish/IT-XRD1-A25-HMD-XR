@@ -55,6 +55,11 @@ public class PlayerDamageReceiver : MonoBehaviour
 
     void OnResetPressed(InputAction.CallbackContext ctx)
     {
-        Application.Quit();
+        if (!ctx.performed) return;
+
+        if (SceneManager.GetActiveScene().name == "Insane Asylum")
+        {
+            Application.Quit();
+        }
     }
 }
