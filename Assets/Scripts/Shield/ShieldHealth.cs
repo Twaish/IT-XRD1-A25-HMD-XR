@@ -13,9 +13,11 @@ public class ShieldHealth : MonoBehaviour
     private int currentHealth;
     private bool isRecharging = false;
     private Collider[] childColliders;
+    private bool isEnvoke = false;
 
     void Start()
     {
+
         currentHealth = maxHealth;
         if (shieldRenderer == null)
             shieldRenderer = GetComponent<MeshRenderer>();
@@ -25,6 +27,26 @@ public class ShieldHealth : MonoBehaviour
         CacheChildColliders();
     }
 
+    void Update()
+    {
+        if (!isEnvoke)
+        {
+            isEnvoke = true;
+            Invoke(nameof(Heal), rechargeTime);
+            
+        }
+    }
+
+    void Heal()
+    {
+        Debug.Log("" + !isRecharging +" "+ (currentHealth <= maxHealth));
+        if (!isRecharging && currentHealth < maxHealth)
+        {
+            Debug.Log("Regenerating +1" + currentHealth);
+            currentHealth++;
+            isEnvoke = false;
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Shield trigger hit by: " + other.name);
