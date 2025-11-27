@@ -706,7 +706,15 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: a46a3074-c8ef-4a3b-98b2-a538cfac00bb
-      m_Path: <Keyboard>/#(U)
+      m_Path: <OculusTouchController>{RightHand}/thumbstickClicked
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reset
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 92205704-6593-49ae-a6c8-8a1b64388c42
+      m_Path: <Keyboard>/u
       m_Interactions: 
       m_Processors: 
       m_Groups: 
