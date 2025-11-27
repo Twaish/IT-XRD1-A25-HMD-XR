@@ -19,10 +19,7 @@ public class HomingThrowActivator : MonoBehaviour
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
-        if (!args.isCanceled)
-        {
-            homing.ActivateHoming();
-        }
+        homing.ActivateHoming();
     }
 
     void OnDestroy()
