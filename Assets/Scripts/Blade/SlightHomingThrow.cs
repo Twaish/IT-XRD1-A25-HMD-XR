@@ -61,6 +61,13 @@ public class SlightHomingThrow : MonoBehaviour
             if (target != null)
             {
                 Vector3 toTarget = (target.position - transform.position).normalized;
+                Vector3 currentDir = rb.linearVelocity.normalized;
+
+                float turnStrength = homingStrength * 50f;
+
+                Vector3 torqueAxis = Vector3.Cross(currentDir, toTarget);
+
+                rb.AddTorque(torqueAxis * turnStrength, ForceMode.Acceleration);
                 newDir = Vector3.Lerp(rb.linearVelocity.normalized, toTarget, homingStrength).normalized;
             }
 
@@ -69,7 +76,7 @@ public class SlightHomingThrow : MonoBehaviour
             rb.linearVelocity = newDir * rb.linearVelocity.magnitude;
 
             if (rotateTowardsVelocity)
-                //transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+                // transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
 
             transform.Rotate(Vector3.forward, spinSpeed * Time.fixedDeltaTime, Space.Self);
         }
